@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { toggleAvailability } from '../Home/homeSlice';
+import { toggleAvailability } from '../Room/roomSlice';
 import api from '../../api/api';
 
 const initialState = {
