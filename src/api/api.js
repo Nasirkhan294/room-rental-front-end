@@ -102,7 +102,7 @@ const api = {
 
   // Fetch available rooms
   fetchAvailableRooms: async () => {
-    const response = await fetch(`${BASE_URL}/ rooms`);
+    const response = await fetch(`${BASE_URL}/rooms`);
     return response.json();
   },
 
@@ -128,6 +128,15 @@ const api = {
       createRequestOptions('GET'),
     );
     return response.json();
+  },
+
+  //  Toggle room availability
+  toggleRoomAvailability: async (roomId, room) => {
+    const response = await fetch(`${BASE_URL}/rooms/${roomId}/availability`, {
+      ...createRequestOptions('PATCH', room),
+    });
+
+    return handleApiResponse(response);
   },
 
   //  Delete a booking

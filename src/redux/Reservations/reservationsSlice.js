@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toggleAvailability } from '../Home/homeSlice';
 import api from '../../api/api';
 
 const initialState = {
@@ -96,6 +97,24 @@ const reservationsSlice = createSlice({
         status: 'succeeded',
       }))
       .addCase(fetchReservations.rejected, (state, action) => ({
+        ...state,
+        status: 'failed',
+        error: action.error.message,
+      }))
+      .addCase(toggleAvailability.pending, (state) => ({
+        ...state,
+        status: 'loading',
+      }))
+      .addCase(toggleAvailability.fulfilled, (state, action) => ({
+        ...state,
+        rooms: [
+          ...(action.payload.data.available ? [action.payload.data] : []),
+          ...state.rooms.filter(({ id }) => id !== action.payload.data.id),
+        ],
+        message: action.payload.message,
+        status: 'succeeded',
+      }))
+      .addCase(toggleAvailability.rejected, (state, action) => ({
         ...state,
         status: 'failed',
         error: action.error.message,
