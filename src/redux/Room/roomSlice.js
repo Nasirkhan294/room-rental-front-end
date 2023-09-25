@@ -4,6 +4,7 @@ import api from '../../api/api';
 const FETCH_ROOMS = 'FETCH_ROOMS';
 const FETCH_ROOM = 'FETCH_ROOM';
 const ADD_ROOM = 'ADD_ROOM';
+const GET_OWNER_ROOMS = 'GET_OWNER_ROOMS';
 const TOGGLE_ROOM_AVAILABILITY = 'TOGGLE_ROOM_AVAILABILITY';
 
 const initialState = {
@@ -37,6 +38,14 @@ export const addRoom = createAsyncThunk(ADD_ROOM, async (room) => {
   }
 });
 
+export const fetchAllRooms = createAsyncThunk(GET_OWNER_ROOMS, async () => {
+  try {
+    return await api.fetchBookings();
+  } catch (error) {
+    return error.message;
+  }
+});
+
 export const toggleAvailability = createAsyncThunk(
   TOGGLE_ROOM_AVAILABILITY,
   async ({ roomId, room }) => {
@@ -57,6 +66,12 @@ const roomsSlice = createSlice({
       room: {},
       status: 'idle',
       message: '',
+      error: null,
+    }),
+    resetAllRoomsState: (state) => ({
+      ...state,
+      allRooms: [],
+      status: 'idle',
       error: null,
     }),
     setMessageEmpty: (state, action) => ({
@@ -140,7 +155,12 @@ const roomsSlice = createSlice({
   },
 });
 
-export const { resetRoomState, setMessageEmpty, setStatusIdle } = roomsSlice.actions;
+export const {
+  resetRoomState,
+  resetAllRoomsState,
+  setMessageEmpty,
+  setStatusIdle,
+} = roomsSlice.actions;
 export const selectRooms = (state) => state.rooms.rooms;
 export const selectRoomStatus = (state) => state.rooms.status;
 export const selectRoomMessage = (state) => state.rooms.message;

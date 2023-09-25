@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <h1>📖 Final capstone front end </h>
+</div>
 
-## Available Scripts
+The `Final capstone front end` project is a web application developed using the React JavaScript library. It serves as the frontend part of a web application and is responsible for providing a user interface and interacting with the backend to display data and user interactions.. 📚
 
-In the project directory, you can run:
+## 🛠 Built With <a name="built-with"></a>
 
-### `npm start`
+  <ul>
+    <li>React</li>
+    <li>Redux</li>
+    <li>Tailwind</li>
+  </ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- Features -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Key Features <a name="key-features"></a>
 
-### `npm test`
+- [x] **React-Based User Interface**
+- [x] **Modular Structure**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Backend Project:
+  [Final-capstone-back-end](https://github.com/Nasirkhan294/final-capstone-back-end)
 
-### `npm run build`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To get a local copy up and running, follow these steps.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
+In order to run this project you need:
+  * A basic understanding of React, Redux and Git
+### Usage
+1. Clone this repo
+2. Run npm install
+```
+git clone git@github.com:Nasirkhan294/final-capstone-front-end.git
+```
 
-### `npm run eject`
+To run the project, execute the following command:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+  npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To run tests, run the following command:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm tests
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Learn More
+<!-- AUTHORS -->
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 👥 Authors <a name="authors"></a>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+👤 **Nasir Mahmood**
 
-### Code Splitting
+- GitHub: [Nasirkhan294](https://github.com/Nasirkhan294)
+- Twitter: [NasirMa35888225](https://twitter.com/NasirMa35888225)
+- LinkedIn: [nasirmahd](https://www.linkedin.com/in/nasirmahd/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Analyzing the Bundle Size
+<!-- FUTURE FEATURES -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔭 Future Features <a name="future-features"></a>
 
-### Making a Progressive Web App
+- [ ] **User Dashboard**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Advanced Configuration
+<!-- CONTRIBUTING -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🤝 Contributing <a name="contributing"></a>
 
-### Deployment
+Contributions, issues, and feature requests are welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Feel free to check the [issues page](../../issues/).
 
-### `npm run build` fails to minify
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- SUPPORT -->
+
+## ⭐️ Show your support <a name="support"></a>
+
+Please support this project and be a part of something meaningful and impactful. Your contribution can make a significant difference and help us achieve our goals faster.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+I would like to express my sincere gratitude to all my Microverse partners who helped me build this project. I could not have done it without your support and encouragement.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## :question: FAQ <a name="faq"></a>
+
+- **Can I fork and reuse this repository?**
+
+Absolutely! Please feel free to fork and reuse this repository for your own projects.
+
+- **Is it okay to improve this repository? Will my changes be accepted?**
+
+Definitely! We welcome any improvements or new ideas you may have. If your changes are good and align with the project's goals, we would be happy to accept them.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
