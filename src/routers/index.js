@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import AddRoomPage from '../pages/AddRoomPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -11,6 +13,11 @@ const AppRouter = () => {
   return (
     <div className="flex w-full">
       <Navbar open={open} handleOpen={handleOpen} />
+      <div className="mb-2 p-7 px-2 flex-1 h-screen overflow-y-scroll">
+        <Routes>
+          <Route path="/add_room" element={<AddRoomPage />} />
+        </Routes>
+      </div>
     </div>
   );
 };
