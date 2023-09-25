@@ -1,15 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api/api";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import api from '../../api/api';
 
-const FETCH_ROOMS = "FETCH_ROOMS";
-const FETCH_ROOM = "FETCH_ROOM";
-const ADD_ROOM = "ADD_ROOM";
-const TOGGLE_ROOM_AVAILABILITY = "TOGGLE_ROOM_AVAILABILITY";
+const FETCH_ROOMS = 'FETCH_ROOMS';
+const FETCH_ROOM = 'FETCH_ROOM';
+const ADD_ROOM = 'ADD_ROOM';
+const GET_OWNER_ROOMS = 'GET_OWNER_ROOMS';
+const TOGGLE_ROOM_AVAILABILITY = 'TOGGLE_ROOM_AVAILABILITY';
 
 const initialState = {
   rooms: [],
   room: {},
-  status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
 };
 
@@ -37,6 +38,14 @@ export const addRoom = createAsyncThunk(ADD_ROOM, async (room) => {
   }
 });
 
+export const fetchAllRooms = createAsyncThunk(GET_OWNER_ROOMS, async () => {
+  try {
+    return await api.fetchBookings();
+  } catch (error) {
+    return error.message;
+  }
+});
+
 export const toggleAvailability = createAsyncThunk(
   TOGGLE_ROOM_AVAILABILITY,
   async ({ roomId, room }) => {
@@ -45,24 +54,24 @@ export const toggleAvailability = createAsyncThunk(
     } catch (error) {
       return error.message;
     }
-  }
+  },
 );
 
 const roomsSlice = createSlice({
-  name: "rooms",
+  name: 'rooms',
   initialState,
   reducers: {
     resetRoomState: (state) => ({
       ...state,
       room: {},
-      status: "idle",
-      message: "",
+      status: 'idle',
+      message: '',
       error: null,
     }),
     resetAllRoomsState: (state) => ({
       ...state,
       allRooms: [],
-      status: "idle",
+      status: 'idle',
       error: null,
     }),
     setMessageEmpty: (state, action) => ({
@@ -71,43 +80,43 @@ const roomsSlice = createSlice({
     }),
     setStatusIdle: (state) => ({
       ...state,
-      status: "idle",
-      message: "",
+      status: 'idle',
+      message: '',
     }),
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchRooms.pending, (state) => ({
         ...state,
-        status: "loading",
+        status: 'loading',
       }))
       .addCase(fetchRooms.fulfilled, (state, action) => ({
         ...state,
         rooms: action.payload,
-        status: "succeeded",
+        status: 'succeeded',
       }))
       .addCase(fetchRooms.rejected, (state, action) => ({
         ...state,
-        status: "failed",
+        status: 'failed',
         error: action.error.message,
       }))
       .addCase(fetchRoomById.pending, (state) => ({
         ...state,
-        status: "loading",
+        status: 'loading',
       }))
       .addCase(fetchRoomById.fulfilled, (state, action) => ({
         ...state,
         room: action.payload,
-        status: "succeeded",
+        status: 'succeeded',
       }))
       .addCase(fetchRoomById.rejected, (state, action) => ({
         ...state,
-        status: "failed",
+        status: 'failed',
         error: action.error.message,
       }))
       .addCase(addRoom.pending, (state) => ({
         ...state,
-        status: "loading",
+        status: 'loading',
       }))
       .addCase(addRoom.fulfilled, (state, action) => ({
         ...state,
@@ -118,16 +127,16 @@ const roomsSlice = createSlice({
           ...state.rooms,
         ],
         message: action.payload.message,
-        status: action.payload.status === 200 ? "succeeded" : "failed",
+        status: action.payload.status === 200 ? 'succeeded' : 'failed',
       }))
       .addCase(addRoom.rejected, (state, action) => ({
         ...state,
-        status: "failed",
+        status: 'failed',
         error: action.error.message,
       }))
       .addCase(toggleAvailability.pending, (state) => ({
         ...state,
-        status: "loading",
+        status: 'loading',
       }))
       .addCase(toggleAvailability.fulfilled, (state, action) => ({
         ...state,
@@ -136,11 +145,11 @@ const roomsSlice = createSlice({
           ...state.rooms.filter(({ id }) => id !== action.payload.data.id),
         ],
         message: action.payload.message,
-        status: "succeeded",
+        status: 'succeeded',
       }))
       .addCase(toggleAvailability.rejected, (state, action) => ({
         ...state,
-        status: "failed",
+        status: 'failed',
         error: action.error.message,
       }));
   },
