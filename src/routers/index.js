@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Navbar from "../components/Navbar";
-import { Routes, Route } from "react-router";
-import AddRoomPage from "../pages/AddRoomPage";
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import AddRoomPage from '../pages/AddRoomPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);

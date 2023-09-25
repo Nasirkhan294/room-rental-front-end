@@ -1,8 +1,6 @@
-import React from "react";
-import AddRoom from "../components/AddRoom";
+import React from 'react';
+import AddRoom from '../components/AddRoom';
 
-const AddRoomPage = () => {
-  return <AddRoom />;
-};
+const AddRoomPage = () => <AddRoom />;
 
 export default AddRoomPage;
