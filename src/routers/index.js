@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
+import { Routes, Route } from 'react-router';
+import AddRoomPage from '../pages/AddRoomPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -11,6 +13,9 @@ const AppRouter = () => {
   return (
     <div className="flex w-full">
       <Navbar open={open} handleOpen={handleOpen} />
+      <Routes>
+        <Route path="/booking" element={<AddRoomPage />} />
+      </Routes>
     </div>
   );
 };
