@@ -2,7 +2,7 @@ import React from "react";
 import AddRoom from "../components/AddRoom";
 
 const AddRoomPage = () => {
-  <AddRoom />;
+  return <AddRoom />;
 };
 
 export default AddRoomPage;

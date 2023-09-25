@@ -142,7 +142,7 @@ const Navbar = ({ open, handleOpen }) => {
       <button
         type="button"
         onClick={() => handleOpen()}
-        className={`absolute flex justify-center items-center bg-amber-700 p-0 hover:border-black top-9 w-6 h-6 border rounded-full cursor-pointer -right-3 ${
+        className={`absolute flex justify-center items-center text-white bg-orange-700 p-0 hover:border-black top-9 w-6 h-6 border rounded-full cursor-pointer -right-3 ${
           !open && 'rotate-180'
         } ${width < 768 && 'hidden'}`}
       >
@@ -150,7 +150,7 @@ const Navbar = ({ open, handleOpen }) => {
       </button>
       <div className="flex gap-x-4 items-center">
         <BuildingOffice2Icon
-          className={`cursor-pointer w-20 text-white p-3 my-2 hover:bg-amber-600/90 hover:text-black hover:rounded-md ${
+          className={`cursor-pointer w-20 text-white p-3 my-2 hover:bg-orange-600/90 hover:text-black hover:rounded-md ${
             open && 'rotate-[360deg]'
           }`}
         />
@@ -171,7 +171,7 @@ const Navbar = ({ open, handleOpen }) => {
               unmount: { scale: 0, y: 25 },
             }}
             placement="right"
-            className="bg-amber-600/90 text-black font-osans font-bold text-sm"
+            className="bg-orange-600/90 text-black font-osans font-bold text-sm"
             open={open ? false : undefined}
           >
             <li>
@@ -192,7 +192,7 @@ const Navbar = ({ open, handleOpen }) => {
         )}
         {menu.map(({
           id, name, icon, path,
-        }) => (role === undefined && (id === 4 || id === 5) ? null : (
+        }) => (role === undefined && (id === 6) ? null : (
           <Tooltip
             key={id}
             content={name}
@@ -201,7 +201,7 @@ const Navbar = ({ open, handleOpen }) => {
               unmount: { scale: 0, y: 25 },
             }}
             placement="right"
-            className="bg-amber-600/90 text-black font-osans font-bold text-sm"
+            className="bg-orange-600/90 text-black font-osans font-bold text-sm"
             open={open ? false : undefined}
           >
             <li>
@@ -209,11 +209,11 @@ const Navbar = ({ open, handleOpen }) => {
                 end
                 to={path}
                 className={({ isActive }) => `${
-                  isActive && 'bg-amber-600/90 rounded-md'
+                  isActive && 'bg-orange-600/90 rounded-md'
                 } flex gap-x-4 text-sm text-white items-center ${
                   !open
                       && 'justify-center w-max p-1 mx-auto transition-[display] duration-100'
-                } cursor-pointer p-3 my-2 hover:bg-amber-600/90 hover:text-black hover:rounded-md`}
+                } cursor-pointer p-3 my-2 hover:bg-orange-600/90 hover:text-black hover:rounded-md`}
               >
                 {icon}
                 <span className={`${!open && 'hidden'}`}>{name}</span>
@@ -228,7 +228,7 @@ const Navbar = ({ open, handleOpen }) => {
             unmount: { scale: 0, y: 25 },
           }}
           placement="right"
-          className="bg-amber-600/90 text-black font-osans font-bold text-sm"
+          className="bg-orange-600/90 text-black font-osans font-bold text-sm"
           open={open ? false : undefined}
         >
           <li>
@@ -242,7 +242,7 @@ const Navbar = ({ open, handleOpen }) => {
                   } gap-x-4 text-sm text-white items-center ${
                     !open
                     && 'justify-center w-max p-1 mx-auto transition-[display] duration-100'
-                  } cursor-pointer p-3 my-2 hover:bg-amber-600/90 hover:text-black hover:rounded-md`}
+                  } cursor-pointer p-3 my-2 hover:bg-orange-600/90 hover:text-black hover:rounded-md`}
                 >
                   <ArrowRightOnRectangleIcon className="w-7 rotate-180 group-hover:-translate-x-0.5 transition duration-300" />
                   <span className={`${!open && 'hidden'}`}>Logout</span>
@@ -253,11 +253,11 @@ const Navbar = ({ open, handleOpen }) => {
                 end
                 to="/login"
                 className={({ isActive }) => `${
-                  isActive && 'bg-amber-600/90 rounded-md '
+                  isActive && 'bg-orange-600/90 rounded-md '
                 } group flex gap-x-4 text-sm text-white items-center ${
                   !open
                     && 'justify-center w-max p-1 mx-auto transition-[display] duration-100'
-                } cursor-pointer p-3 my-2 hover:bg-amber-600/90 hover:text-black hover:rounded-md ${
+                } cursor-pointer p-3 my-2 hover:bg-orange-600/90 hover:text-black hover:rounded-md ${
                   hide && 'hidden duration-150'
                 }`}
               >
