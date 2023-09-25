@@ -47,21 +47,20 @@ const AddRoom = () => {
       .min(4, 'Too Short!')
       .max(250, 'Too Long!')
       .matches(
-        /^(?=.{4,50}$)(?![a-z])(?!.*[_.]{2})[a-zA-Z0-9 ]+(?<![_.])$/,
-        'Name should have at least 4 characters and should not contain special characters or punctations!',
+        /^(?=.{4,250}$)[a-zA-Z0-9 ]+$/,
+        'Name should have at least 4 characters and contain only letters, numbers, and spaces!',
       )
-      .required('Name is required'),
+      .required('Name is required!'),
     description: Yup.string()
-      .required('Description is required')
-      .min(5, 'Too short!')
+      .required('Description is required!')
+      .min(5, 'Too Short!')
       .max(500, 'Too Long!'),
     price: Yup.number()
       .required('Price is required!')
-      .positive('Please enter only positive numbers!')
-      .integer('Please enter only intergers!'),
+      .positive('Please enter only positive numbers!'),
     image: Yup.string()
       .url('Invalid URL')
-      .required('Image is required')
+      .required('Image is required!')
       .matches(
         /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i,
         'Should end with gif, jpeg, tiff, png, webp, bmp, or jpg',
@@ -79,7 +78,9 @@ const AddRoom = () => {
   };
 
   const navigateDeleteRoom = () => {
-    if (message === 'Room has been successfully added') { navigate('/delete_room'); }
+    if (message === 'Room has been successfully added') {
+      navigate('/delete_room');
+    }
   };
 
   useEffect(() => {
@@ -92,7 +93,7 @@ const AddRoom = () => {
       <Card className="mt-8 mb-64 max-w-[450px] mx-auto bg-white/90 backdrop-blur-md">
         <CardHeader
           variant="gradient"
-          className="mb-4 grid h-28 place-items-center text-white bg-black/50 backdrop-blur-md"
+          className="mb-4 grid h-28 place-items-center bg-orange-600/90 text-white backdrop-blur-md"
         >
           <Typography
             variant="h3"
@@ -127,7 +128,7 @@ const AddRoom = () => {
                 <Field
                   as={Input}
                   name="name"
-                  color="orange"
+                  color="amber"
                   size="md"
                   label="Name"
                   error={Boolean(errors.name) && touched.name}
@@ -141,9 +142,9 @@ const AddRoom = () => {
                 <Field
                   as={Input}
                   name="image"
-                  color="orange"
+                  color="amber"
                   size="md"
-                  label="Put a Room Image Link"
+                  label="Put a Room Image link"
                   error={Boolean(errors.image) && touched.image}
                 />
                 <ErrorMessage
@@ -156,7 +157,7 @@ const AddRoom = () => {
                   as={Input}
                   name="price"
                   type="number"
-                  color="orange"
+                  color="amber"
                   size="lg"
                   label="Price"
                   error={Boolean(errors.price) && touched.price}
@@ -170,7 +171,7 @@ const AddRoom = () => {
                 <Field
                   as={Textarea}
                   name="description"
-                  color="orange"
+                  color="amber"
                   label="Description"
                   size="md"
                   error={Boolean(errors.description) && touched.description}
@@ -192,7 +193,7 @@ const AddRoom = () => {
               <CardFooter className="pt-0">
                 <Button
                   type="submit"
-                  color="orange"
+                  color="amber"
                   variant="gradient"
                   fullWidth
                   className="capitalize flex justify-center items-center"
