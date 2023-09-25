@@ -128,7 +128,7 @@ const AddRoom = () => {
                 <Field
                   as={Input}
                   name="name"
-                  color="amber"
+                  color="orange"
                   size="md"
                   label="Name"
                   error={Boolean(errors.name) && touched.name}
@@ -142,7 +142,7 @@ const AddRoom = () => {
                 <Field
                   as={Input}
                   name="image"
-                  color="amber"
+                  color="orange"
                   size="md"
                   label="Put a Room Image link"
                   error={Boolean(errors.image) && touched.image}
@@ -157,7 +157,7 @@ const AddRoom = () => {
                   as={Input}
                   name="price"
                   type="number"
-                  color="amber"
+                  color="orange"
                   size="lg"
                   label="Price"
                   error={Boolean(errors.price) && touched.price}
@@ -171,7 +171,7 @@ const AddRoom = () => {
                 <Field
                   as={Textarea}
                   name="description"
-                  color="amber"
+                  color="orange"
                   label="Description"
                   size="md"
                   error={Boolean(errors.description) && touched.description}
@@ -185,7 +185,7 @@ const AddRoom = () => {
                 <Field
                   as={Checkbox}
                   name="available"
-                  color="amber"
+                  color="orange"
                   defaultChecked
                   label={values.available ? 'Available' : "Don't put in list"}
                 />
@@ -193,7 +193,7 @@ const AddRoom = () => {
               <CardFooter className="pt-0">
                 <Button
                   type="submit"
-                  color="amber"
+                  color="orange"
                   variant="gradient"
                   fullWidth
                   className="capitalize flex justify-center items-center"
