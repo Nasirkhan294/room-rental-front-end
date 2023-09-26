@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import HomePage from '../pages-home/Home';
 import AddRoomPage from '../pages/AddRoomPage';
 import DeleteRoomPage from '../pages/DeleteRoomPage';
+import RoomDetails from '../pages/RoomDetails';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -16,6 +18,8 @@ const AppRouter = () => {
       <Navbar open={open} handleOpen={handleOpen} />
       <div className="mb-2 p-7 px-2 flex-1 h-screen overflow-y-scroll">
         <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/room/:id" element={<RoomDetails />} />
           <Route path="/add_room" element={<AddRoomPage />} />
           <Route path="/delete_room" element={<DeleteRoomPage />} />
         </Routes>
