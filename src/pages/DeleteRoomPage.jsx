@@ -1,7 +1,5 @@
-import DeleteRoom from "../components/DeleteRoom";
+import DeleteRoom from '../components/DeleteRoom';
 
-const DeleteRoomPage = () => {
-  return <DeleteRoom />;
-};
+const DeleteRoomPage = () => <DeleteRoom />;
 
 export default DeleteRoomPage;

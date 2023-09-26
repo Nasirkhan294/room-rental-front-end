@@ -1,23 +1,22 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import {
   Card,
   CardHeader,
   CardBody,
-  cardFooter,
   Typography,
   CardFooter,
-} from "@material-tailwind/react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Loader from "./Loader";
-import Switch from "./Switch";
+} from '@material-tailwind/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Loader from './Loader';
+import Switch from './Switch';
 import {
   allRooms,
   selectRoomStatus,
   toggleAvailability,
   setMessageEmpty,
-} from "../redux/Room/roomSlice";
-import useToken from "../redux/Auth/useToken";
+} from '../redux/Room/roomSlice';
+import useToken from '../redux/Auth/useToken';
 
 const DeleteRoom = () => {
   const rooms = useSelector(allRooms);
@@ -36,8 +35,18 @@ const DeleteRoom = () => {
     }, 1000);
   };
 
-  document.title = "Room Rental | Delete Room";
-  return status === "loading" ? (
+  document.title = 'Room Rental | Delete Room';
+
+  const checkAuthUser = () => {
+    if (!isTokenSet) navigate('/login');
+  };
+
+  useEffect(() => {
+    dispatch(setMessageEmpty());
+    checkAuthUser();
+  }, [isTokenSet]);
+
+  return status === 'loading' ? (
     <Loader />
   ) : (
     <>
@@ -61,7 +70,9 @@ const DeleteRoom = () => {
         </Card>
       ) : (
         <div className="Room-Grid grid gap-6">
-          {rooms.map(({ id: roomId, name, image, price, available }) => (
+          {rooms.map(({
+            id: roomId, name, image, price, available,
+          }) => (
             <Card key={roomId} className="cursor-pointer my-5">
               <CardHeader
                 color="orange"
@@ -76,19 +87,23 @@ const DeleteRoom = () => {
               </CardHeader>
               <CardBody className="px-2 text-center">
                 <Typography variant="h5" className="mb-2 whitespace-pre-wrap">
-                    {name}
+                  {name}
                 </Typography>
               </CardBody>
-              <CardFooter divider className="flex items-center justify-between py-3">
+              <CardFooter
+                divider
+                className="flex items-center justify-between py-3"
+              >
                 <Typography variant="small">
-                    ${price}
+                  $
+                  {price}
                 </Typography>
                 <Switch
-                    status={available}
-                    roomName={name}
-                    roomId={roomId}
-                    handleRemove={handleDeleteRoom}
-                  />
+                  status={available}
+                  roomName={name}
+                  roomId={roomId}
+                  handleRemove={handleDeleteRoom}
+                />
               </CardFooter>
             </Card>
           ))}
