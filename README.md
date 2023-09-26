@@ -96,7 +96,7 @@ Please support this project and be a part of something meaningful and impactful.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to express my sincere gratitude to all my Microverse partners who helped me build this project. I could not have done it without your support and encouragement.
+I would like to express my sincere gratitude to [Murat Korkmaz on Behance](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) for this design and to all my Microverse partners who helped me build this project. I could not have done it without your support and encouragement.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
