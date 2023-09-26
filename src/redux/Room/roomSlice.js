@@ -1,16 +1,17 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../api/api';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../../api/api";
 
-const FETCH_ROOMS = 'FETCH_ROOMS';
-const FETCH_ROOM = 'FETCH_ROOM';
-const ADD_ROOM = 'ADD_ROOM';
-const GET_OWNER_ROOMS = 'GET_OWNER_ROOMS';
-const TOGGLE_ROOM_AVAILABILITY = 'TOGGLE_ROOM_AVAILABILITY';
+const FETCH_ROOMS = "FETCH_ROOMS";
+const FETCH_ROOM = "FETCH_ROOM";
+const ADD_ROOM = "ADD_ROOM";
+const GET_OWNER_ROOMS = "GET_OWNER_ROOMS";
+const TOGGLE_ROOM_AVAILABILITY = "TOGGLE_ROOM_AVAILABILITY";
 
 const initialState = {
-  rooms: [],
+  availableRooms: [],
   room: {},
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  allRooms: [],
+  status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
 };
 
@@ -54,24 +55,24 @@ export const toggleAvailability = createAsyncThunk(
     } catch (error) {
       return error.message;
     }
-  },
+  }
 );
 
 const roomsSlice = createSlice({
-  name: 'rooms',
+  name: "rooms",
   initialState,
   reducers: {
     resetRoomState: (state) => ({
       ...state,
       room: {},
-      status: 'idle',
-      message: '',
+      status: "idle",
+      message: "",
       error: null,
     }),
     resetAllRoomsState: (state) => ({
       ...state,
       allRooms: [],
-      status: 'idle',
+      status: "idle",
       error: null,
     }),
     setMessageEmpty: (state, action) => ({
@@ -80,76 +81,96 @@ const roomsSlice = createSlice({
     }),
     setStatusIdle: (state) => ({
       ...state,
-      status: 'idle',
-      message: '',
+      status: "idle",
+      message: "",
     }),
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchRooms.pending, (state) => ({
         ...state,
-        status: 'loading',
+        status: "loading",
       }))
       .addCase(fetchRooms.fulfilled, (state, action) => ({
         ...state,
-        rooms: action.payload,
-        status: 'succeeded',
+        availableRooms: action.payload,
+        status: "succeeded",
       }))
       .addCase(fetchRooms.rejected, (state, action) => ({
         ...state,
-        status: 'failed',
+        status: "failed",
         error: action.error.message,
       }))
       .addCase(fetchRoomById.pending, (state) => ({
         ...state,
-        status: 'loading',
+        status: "loading",
       }))
       .addCase(fetchRoomById.fulfilled, (state, action) => ({
         ...state,
         room: action.payload,
-        status: 'succeeded',
+        status: "succeeded",
       }))
       .addCase(fetchRoomById.rejected, (state, action) => ({
         ...state,
-        status: 'failed',
+        status: "failed",
         error: action.error.message,
       }))
       .addCase(addRoom.pending, (state) => ({
         ...state,
-        status: 'loading',
+        status: "loading",
       }))
       .addCase(addRoom.fulfilled, (state, action) => ({
         ...state,
-        rooms: [
+        availableRooms: [
           ...(action.payload.data.available && action.payload.status === 201
             ? [action.payload.data]
             : []),
-          ...state.rooms,
+          ...state.availableRooms,
         ],
         message: action.payload.message,
-        status: action.payload.status === 200 ? 'succeeded' : 'failed',
+        status: action.payload.status === 200 ? "succeeded" : "failed",
       }))
       .addCase(addRoom.rejected, (state, action) => ({
         ...state,
-        status: 'failed',
+        status: "failed",
         error: action.error.message,
       }))
       .addCase(toggleAvailability.pending, (state) => ({
         ...state,
-        status: 'loading',
+        status: "loading",
       }))
       .addCase(toggleAvailability.fulfilled, (state, action) => ({
         ...state,
-        rooms: [
+        availableRooms: [
           ...(action.payload.data.available ? [action.payload.data] : []),
-          ...state.rooms.filter(({ id }) => id !== action.payload.data.id),
+          ...state.availableRooms.filter(
+            ({ id }) => id !== action.payload.data.id
+          ),
+        ],
+        allRooms: [
+          action.payload.data,
+          ...state.allRooms.filter(({ id }) => id !== action.payload.data.id),
         ],
         message: action.payload.message,
-        status: 'succeeded',
+        status: "succeeded",
       }))
       .addCase(toggleAvailability.rejected, (state, action) => ({
         ...state,
-        status: 'failed',
+        status: "failed",
+        error: action.error.message,
+      }))
+      .addCase(fetchAllRooms.pending, (state) => ({
+        ...state,
+        status: "loading",
+      }))
+      .addCase(fetchAllRooms.fulfilled, (state) => ({
+        ...state,
+        allRooms: action.payload,
+        status: "succeeded",
+      }))
+      .addCase(fetchAllRooms.rejected, (state) => ({
+        ...state,
+        status: "failed",
         error: action.error.message,
       }));
   },
@@ -161,9 +182,10 @@ export const {
   setMessageEmpty,
   setStatusIdle,
 } = roomsSlice.actions;
-export const selectRooms = (state) => state.rooms.rooms;
+export const availableRooms = (state) => state.rooms.availableRooms;
 export const selectRoomStatus = (state) => state.rooms.status;
 export const selectRoomMessage = (state) => state.rooms.message;
 export const selectRoom = (state) => state.rooms.room;
+export const allRooms = (state) => state.rooms.allRooms;
 
 export default roomsSlice.reducer;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import AddRoomPage from '../pages/AddRoomPage';
+import DeleteRoomPage from '../pages/DeleteRoomPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -16,6 +17,7 @@ const AppRouter = () => {
       <div className="mb-2 p-7 px-2 flex-1 h-screen overflow-y-scroll">
         <Routes>
           <Route path="/add_room" element={<AddRoomPage />} />
+          <Route path="/delete_room" element={<DeleteRoomPage />} />
         </Routes>
       </div>
     </div>
