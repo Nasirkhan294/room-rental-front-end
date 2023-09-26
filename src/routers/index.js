@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import AddRoomPage from '../pages/AddRoomPage';
 import DeleteRoomPage from '../pages/DeleteRoomPage';
+import LoginPage from '../pages/LoginPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -18,6 +19,7 @@ const AppRouter = () => {
         <Routes>
           <Route path="/add_room" element={<AddRoomPage />} />
           <Route path="/delete_room" element={<DeleteRoomPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </div>
