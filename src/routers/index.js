@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import AddRoomPage from '../pages/AddRoomPage';
 import DeleteRoomPage from '../pages/DeleteRoomPage';
 import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -20,6 +21,7 @@ const AppRouter = () => {
           <Route path="/add_room" element={<AddRoomPage />} />
           <Route path="/delete_room" element={<DeleteRoomPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </div>
     </div>
