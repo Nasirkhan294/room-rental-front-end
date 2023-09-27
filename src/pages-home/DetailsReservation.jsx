@@ -64,7 +64,7 @@ const ReservationDetail = ({
   );
 };
 
-CustomReservationDetail.propTypes = {
+ReservationDetail.propTypes = {
   reservationTitle: PropTypes.string.isRequired,
   hotelName: PropTypes.string.isRequired,
   checkinDate: PropTypes.string.isRequired,
