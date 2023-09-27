@@ -9,6 +9,7 @@ import RegisterPage from '../pages/RegisterPage';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
 import useToken from '../redux/Auth/useToken';
+import BookingPage from '../pages/BookingPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -30,6 +31,7 @@ const AppRouter = () => {
       <Navbar open={open} handleOpen={handleOpen} />
       <div className="mb-2 p-7 px-2 flex-1 h-screen overflow-y-scroll">
         <Routes>
+          <Route path='/booking' element={<BookingPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/add_room" element={<AddRoomPage />} />
             <Route path="/delete_room" element={<DeleteRoomPage />} />
