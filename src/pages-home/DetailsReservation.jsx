@@ -10,7 +10,7 @@ import { BookmarkIcon, BookmarkSlashIcon } from '@heroicons/react/24/solid';
 import { TagIcon, NoSymbolIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 
-const CustomReservationDetail = ({
+const ReservationDetail = ({
   reservationTitle,
   checkinDate,
   checkoutDate,
@@ -72,4 +72,4 @@ CustomReservationDetail.propTypes = {
   roomAvailable: PropTypes.bool.isRequired,
 };
 
-export default CustomReservationDetail;
+export default ReservationDetail;
