@@ -30,7 +30,7 @@ const AppRouter = () => {
   return (
     <div className="flex w-full">
       <Navbar open={open} handleOpen={handleOpen} />
-      <div className="mb-2 p-7 px-2 flex-1 h-screen overflow-y-scroll">
+      <div className="p-7 px-2 flex-1 h-screen overflow-y-scroll">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/room/:id" element={<RoomDetails />} />
