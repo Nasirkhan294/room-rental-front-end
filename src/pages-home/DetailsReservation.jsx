@@ -7,7 +7,7 @@ import {
   Chip,
 } from '@material-tailwind/react';
 import { BookmarkIcon, BookmarkSlashIcon } from '@heroicons/react/24/solid';
-
+import { TagIcon, NoSymbolIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 
 const CustomReservationDetail = ({
@@ -39,7 +39,7 @@ const CustomReservationDetail = ({
           <Chip
             color="red"
             value="Room is no longer available"
-            
+            icon={<NoSymbolIcon />}
             className="capitalize mt-2"
           />
         )}
