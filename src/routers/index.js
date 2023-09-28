@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import Navbar from "../components/Navbar";
-import AddRoomPage from "../pages/AddRoomPage";
-import DeleteRoomPage from "../pages/DeleteRoomPage";
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
-import ProtectedRoute from "../components/ProtectedRoute";
-import { selectAuthenticatedUser } from "../redux/Auth/authSlice";
-import useToken from "../redux/Auth/useToken";
-import BookingPage from "../pages/BookingPage";
+import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import Navbar from '../components/Navbar';
+import AddRoomPage from '../pages/AddRoomPage';
+import DeleteRoomPage from '../pages/DeleteRoomPage';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import ProtectedRoute from '../components/ProtectedRoute';
+import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
+import useToken from '../redux/Auth/useToken';
+import BookingPage from '../pages/BookingPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);

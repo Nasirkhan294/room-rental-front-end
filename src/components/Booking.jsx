@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { DatePicker } from "antd";
-import moment from "moment";
-import dayjs from "dayjs";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { DatePicker } from 'antd';
+import moment from 'moment';
+import dayjs from 'dayjs';
 import {
   Button,
   Card,
@@ -13,17 +13,17 @@ import {
   Option,
   Select,
   Typography,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
 import {
   reserveRoom,
   selectReservationMessage,
   selectReservationStatus,
-} from "../redux/Reservations/reservationsSlice";
-import useToken from "../redux/Auth/useToken";
-import { fetchRooms, selectRoom } from "../redux/Room/roomSlice";
-import { selectAuthenticatedUser } from "../redux/Auth/authSlice";
-import Alert from "./Alert";
-import { Spinner } from "./Loader";
+} from '../redux/Reservations/reservationsSlice';
+import useToken from '../redux/Auth/useToken';
+import { fetchRooms, selectRoom } from '../redux/Room/roomSlice';
+import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
+import Alert from './Alert';
+import { Spinner } from './Loader';
 
 const Booking = () => {
   const [checkinDate, setCheckinDate] = useState(null);
@@ -37,12 +37,11 @@ const Booking = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isTokenSet = useToken();
-  const handleDateFormat = (date) =>
-    moment(
-      dayjs(date)
-        .toDate()
-        .format(YYYY - MM - DD)
-    );
+  const handleDateFormat = (date) => moment(
+    dayjs(date)
+      .toDate()
+      .format('YYYY-MM-DD'),
+  );
 
   const handleRoomId = (roomId) => setRoomId(+roomId);
   const handleReserve = () => {
@@ -60,12 +59,13 @@ const Booking = () => {
   };
 
   const navigateReservation = () => {
-    if (message === "Room has been successfully booked")
-      navigate("/reservation");
+    if (message === 'Room has been successfully booked') {
+      navigate('/reservation');
+    }
   };
 
   const checkAuthUser = () => {
-    if (!isTokenSet) navigate("/login");
+    if (!isTokenSet) navigate('/login');
   };
 
   const handleSeletedRoom = () => {
@@ -78,10 +78,10 @@ const Booking = () => {
     checkAuthUser();
   }, [message, isTokenSet, selectedRoom]);
 
-  document.title = "Room Rental | Booking";
+  document.title = 'Room Rental | Booking';
   return (
     <>
-      {status === "failed" && <Alert message={message} />}
+      {status === 'failed' && <Alert message={message} />}
       <Card className="mt-8 max-w-sm mx-atuo bg-white/90 backdrop-blur-md">
         <CardHeader
           variant="gradient"
@@ -110,9 +110,7 @@ const Booking = () => {
             size="large"
             format="YYYY/MM/DD"
             allowClear
-            disabledDate={(current) =>
-              current && current < moment().startOf("day")
-            }
+            disabledDate={(current) => current && current < moment().startOf('day')}
             onChange={(date) => setCheckinDate(handleDateFormat(date))}
           />
           <DatePicker
@@ -121,9 +119,7 @@ const Booking = () => {
             size="large"
             format="YYYY/MM/DD"
             allowClear
-            disabledDate={(current) =>
-              current && current < moment().endOf("day")
-            }
+            disabledDate={(current) => current && current < moment().endOf('day')}
             onChange={(date) => setCheckoutDate(handleDateFormat(date))}
           />
           <Select
@@ -155,7 +151,7 @@ const Booking = () => {
             fullWidth
             className="capitalize flex justify-center items-center"
           >
-            {status === "loading" ? <Spinner /> : <span>Book Room</span>}
+            {status === 'loading' ? <Spinner /> : <span>Book Room</span>}
           </Button>
         </CardFooter>
       </Card>
