@@ -15,7 +15,7 @@ export const reserveRoom = createAsyncThunk(
     try {
       return await api.reserveRoom(userId, booking);
     } catch (error) {
-      throw Error(error.message);
+      return error.message;
     }
   },
 );
@@ -26,7 +26,7 @@ export const fetchReservations = createAsyncThunk(
     try {
       return await api.fetchBookings(userId);
     } catch (error) {
-      throw Error(error.message);
+      return error.message;
     }
   },
 );
@@ -37,7 +37,7 @@ export const deleteReservation = createAsyncThunk(
     try {
       return await api.deleteBooking(userId, bookingId);
     } catch (error) {
-      throw Error(error.message);
+      return error.message;
     }
   },
 );
@@ -107,12 +107,21 @@ const reservationsSlice = createSlice({
       }))
       .addCase(toggleAvailability.fulfilled, (state, action) => ({
         ...state,
-        rooms: [
-          ...(action.payload.data.available ? [action.payload.data] : []),
-          ...state.rooms.filter(({ id }) => id !== action.payload.data.id),
+        reservations: [
+          ...state.reservations.map((reservation) => (reservation.room.id === action.payload.data.id
+            ? {
+              ...reservation,
+              room: {
+                ...reservation.room,
+                available: action.payload.data.available,
+              },
+            }
+            : reservation)),
         ],
-        message: action.payload.message,
         status: 'succeeded',
+        message: `${action.payload.data.name} is ${
+          action.payload.data.available ? 'available' : 'unavailable'
+        }`,
       }))
       .addCase(toggleAvailability.rejected, (state, action) => ({
         ...state,

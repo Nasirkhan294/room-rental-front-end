@@ -11,6 +11,7 @@ import RegisterPage from '../pages/RegisterPage';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
 import useToken from '../redux/Auth/useToken';
+import BookingPage from '../pages/BookingPage';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
@@ -34,9 +35,8 @@ const AppRouter = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/room/:id" element={<RoomDetails />} />
-          <Route path="/add_room" element={<AddRoomPage />} />
-          <Route path="/delete_room" element={<DeleteRoomPage />} />
           <Route element={<ProtectedRoute />}>
+            <Route path="/booking" element={<BookingPage />} />
             <Route path="/add_room" element={<AddRoomPage />} />
             <Route path="/delete_room" element={<DeleteRoomPage />} />
           </Route>
