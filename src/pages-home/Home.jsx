@@ -9,11 +9,14 @@ import {
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
-import { fetchAllRooms, selectRoomStatus } from '../redux/Room/roomSlice';
+import { selectRoomStatus } from '../redux/Room/roomSlice';
+import rooms from '../api/placeholder.json';
+// import { fetchAllRooms, selectRoomStatus } from '../redux/Room/roomSlice';
 
 const Home = () => {
   document.title = 'Home';
-  const rooms = useSelector(fetchAllRooms);
+  // const rooms = useSelector(fetchAllRooms);
+
   const status = useSelector(selectRoomStatus);
   const navigate = useNavigate();
 
@@ -56,13 +59,14 @@ const Home = () => {
               <Typography variant="small" className="font-semibold">
                 $
                 {room.daily_price}
+                /per night
               </Typography>
               <Typography
                 variant="small"
                 color="gray"
                 className="flex gap-1 font-semibold"
               >
-                {room.model}
+                {room.location}
               </Typography>
             </CardFooter>
           </Card>

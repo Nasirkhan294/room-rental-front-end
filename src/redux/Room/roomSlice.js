@@ -11,7 +11,7 @@ const initialState = {
   availableRooms: [],
   room: {},
   allRooms: [],
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: 'idle',
   error: null,
 };
 
