@@ -81,7 +81,7 @@ const Reservation = () => {
             checkin_date: checkinDate,
             checkout_date: checkoutDate,
             room: {
-              name: hotelName,
+              name: hotel,
               image,
               daily_price: dailyPrice,
               available,
@@ -97,7 +97,7 @@ const Reservation = () => {
               </CardHeader>
               <CardBody className="text-center">
                 <ReservationDetail
-                  reservationTitle={hotelNameName}
+                  reservationTitle={Name}
                   checkinDate={checkinDate}
                   checkoutDate={checkoutDate}
                   hotelNameModel={hotel}
@@ -135,9 +135,9 @@ const Reservation = () => {
 
 Reservation.propTypes = {
   reservationTitle: PropTypes.string.isRequired,
-  pickupDate: PropTypes.string.isRequired,
-  returnDate: PropTypes.string.isRequired,
-  hotelName: PropTypes.string.isRequired,
+  checkinDate: PropTypes.string.isRequired,
+  checkoutDate: PropTypes.string.isRequired,
+  hotel: PropTypes.string.isRequired,
   roomAvailable: PropTypes.bool.isRequired,
 };
 
