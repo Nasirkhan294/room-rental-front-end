@@ -97,11 +97,11 @@ const Reservation = () => {
               </CardHeader>
               <CardBody className="text-center">
                 <ReservationDetail
-                  reservationTitle={Name}
+                  reservationTitle={reservationTitle}
                   checkinDate={checkinDate}
                   checkoutDate={checkoutDate}
-                  hotelName={hotel}
-                  roomAvailable={available}
+                  hotel={hotel}
+                  roomAvailable={roomAvailable}
                 />
               </CardBody>
               <CardFooter
