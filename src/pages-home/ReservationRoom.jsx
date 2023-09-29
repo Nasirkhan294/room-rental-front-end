@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   Card,
   CardBody,
@@ -97,11 +97,11 @@ const Reservation = () => {
               </CardHeader>
               <CardBody className="text-center">
                 <ReservationDetail
-                  reservationTitle={reservationTitle}
+                  reservationTitle={hotel}
                   checkinDate={checkinDate}
                   checkoutDate={checkoutDate}
                   hotel={hotel}
-                  roomAvailable={roomAvailable}
+                  roomAvailable={available}
                 />
               </CardBody>
               <CardFooter
@@ -133,12 +133,12 @@ const Reservation = () => {
   );
 };
 
-Reservation.propTypes = {
-  reservationTitle: PropTypes.string.isRequired,
-  checkinDate: PropTypes.string.isRequired,
-  checkoutDate: PropTypes.string.isRequired,
-  hotel: PropTypes.string.isRequired,
-  roomAvailable: PropTypes.bool.isRequired,
-};
+// Reservation.propTypes = {
+//   reservationTitle: PropTypes.string.isRequired,
+//   checkinDate: PropTypes.string.isRequired,
+//   checkoutDate: PropTypes.string.isRequired,
+//   hotel: PropTypes.string.isRequired,
+//   roomAvailable: PropTypes.bool.isRequired,
+// };
 
 export default Reservation;
