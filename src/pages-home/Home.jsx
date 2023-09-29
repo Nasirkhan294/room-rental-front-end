@@ -9,9 +9,9 @@ import {
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
-import { selectRoomStatus } from '../redux/Room/roomSlice';
 import rooms from '../api/placeholder.json';
 // import { fetchAllRooms, selectRoomStatus } from '../redux/Room/roomSlice';
+import { selectRoomStatus } from '../redux/Room/roomSlice';
 
 const Home = () => {
   document.title = 'Home';
