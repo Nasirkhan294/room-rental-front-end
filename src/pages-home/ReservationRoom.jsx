@@ -12,23 +12,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
   setMessageEmpty,
-  allMessages,
-  allStatus,
+  selectReservationMessage,
+  selectReservationStatus,
   roomReservations,
   deleteReservation,
 } from '../redux/Reservations/reservationsSlice';
 import useToken from '../redux/Auth/useToken';
-import { authenticatedUser } from '../redux/Auth/authSlice';
+import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
 import Loader from '../components/Loader';
 import ReservationDetail from './DetailsReservation';
 
 const Reservation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const message = useSelector(allMessages);
+  const message = useSelector(selectReservationMessage);
   const reservations = useSelector(roomReservations);
-  const status = useSelector(allStatus);
-  const currentUser = useSelector(authenticatedUser);
+  const status = useSelector(selectReservationStatus);
+  const currentUser = useSelector(selectAuthenticatedUser);
   const isTokenSet = useToken();
 
   const handleRemoveReservation = (reservationId) => {
@@ -91,7 +91,7 @@ const Reservation = () => {
               <CardHeader color="amber" className="relative h-56">
                 <img
                   src={image}
-                  alt={`${hotelName}-img`}
+                  alt={`${hotel}-img`}
                   className="h-full w-full"
                 />
               </CardHeader>
@@ -100,7 +100,7 @@ const Reservation = () => {
                   reservationTitle={Name}
                   checkinDate={checkinDate}
                   checkoutDate={checkoutDate}
-                  hotelNameModel={hotel}
+                  hotelName={hotel}
                   roomAvailable={available}
                 />
               </CardBody>

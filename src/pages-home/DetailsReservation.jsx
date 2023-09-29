@@ -14,7 +14,7 @@ const ReservationDetail = ({
   reservationTitle,
   checkinDate,
   checkoutDate,
-  hotelName,
+  hotel,
   roomAvailable,
 }) => {
   const [open, setOpen] = useState(0);
@@ -47,7 +47,7 @@ const ReservationDetail = ({
           <ul className="list-outside list-disc">
             <li className="flex gap-1 items-center">
               <TagIcon className="w-7 stroke-amber-600" />
-              <span>{hotelName}</span>
+              <span>{hotel}</span>
             </li>
             <li className="flex gap-1 items-center">
               <BookmarkIcon className="w-7 fill-blue-gray-600" />
@@ -66,7 +66,7 @@ const ReservationDetail = ({
 
 ReservationDetail.propTypes = {
   reservationTitle: PropTypes.string.isRequired,
-  hotelName: PropTypes.string.isRequired,
+  hotel: PropTypes.string.isRequired,
   checkinDate: PropTypes.string.isRequired,
   checkoutDate: PropTypes.string.isRequired,
   roomAvailable: PropTypes.bool.isRequired,
