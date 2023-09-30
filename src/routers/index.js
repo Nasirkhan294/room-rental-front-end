@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Navbar from '../components/Navbar';
-import HomePage from '../pages-home/Home';
+import HomePage from '../pages/Home';
 import AddRoomPage from '../pages/AddRoomPage';
 import DeleteRoomPage from '../pages/DeleteRoomPage';
 import RoomDetails from '../pages/RoomDetails';
@@ -12,7 +12,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
 import useToken from '../redux/Auth/useToken';
 import BookingPage from '../pages/BookingPage';
-import Reservation from '../pages-home/Reservation';
+import Reservation from '../pages/Reservation';
 
 const AppRouter = () => {
   const [open, setOpen] = useState(false);
