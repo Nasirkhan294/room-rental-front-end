@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Page Should render the proper Home Page 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <h1
+          class="block antialiased text-inherit uppercase font-osans mt-3 font-extralight tracking-widest mb-3 text-center sl:ml-2 text-[1.37rem] leading-7 sm:text-2xl md:text-3xl border-b-2 pb-2"
+        >
+          AVAILABLE ROOMS
+        </h1>
+      </div>
+      <div
+        class="relative max-w-[800px] mx-auto flex flex-col mt-6"
+      >
+        <div
+          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md cursor-pointer my-5"
+        >
+          <div
+            class="bg-clip-border rounded-xl overflow-hidden bg-amber-500 text-gray-700 shadow-amber-500/40 shadow-lg -mt-6 relative h-56 mx-0.5"
+          >
+            <img
+              alt="img-blur-shadow"
+              class="h-full w-full object-cover"
+              src="https://media.cnn.com/api/v1/images/stellar/prod/140127103345-peninsula-shanghai-deluxe-mock-up.jpg"
+            />
+          </div>
+          <div
+            class="p-6 px-2 text-center"
+          >
+            <h5
+              class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-inherit mb-2 whitespace-pre-wrap"
+            >
+              The Wallace Hotel
+            </h5>
+          </div>
+          <div
+            class="p-6 border-t border-blue-gray-50 flex items-center justify-between py-3"
+          >
+            <p
+              class="block antialiased font-sans text-sm leading-normal text-inherit font-semibold"
+            >
+              $
+              1050
+              /per night
+            </p>
+            <p
+              class="antialiased font-sans text-sm leading-normal text-gray-700 flex gap-1 font-semibold"
+            >
+              Manhatten, New York
+            </p>
+          </div>
+        </div>
+        <div
+          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md cursor-pointer my-5"
+        >
+          <div
+            class="bg-clip-border rounded-xl overflow-hidden bg-amber-500 text-gray-700 shadow-amber-500/40 shadow-lg -mt-6 relative h-56 mx-0.5"
+          >
+            <img
+              alt="img-blur-shadow"
+              class="h-full w-full object-cover"
+              src="https://cdn.loewshotels.com/loewshotels.com-2466770763/cms/cache/v2/5f5a6e0d12749.jpg/1920x1080/fit/80/86e685af18659ee9ecca35c465603812.jpg"
+            />
+          </div>
+          <div
+            class="p-6 px-2 text-center"
+          >
+            <h5
+              class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-inherit mb-2 whitespace-pre-wrap"
+            >
+              NH Collection Milano President
+            </h5>
+          </div>
+          <div
+            class="p-6 border-t border-blue-gray-50 flex items-center justify-between py-3"
+          >
+            <p
+              class="block antialiased font-sans text-sm leading-normal text-inherit font-semibold"
+            >
+              $
+              1750
+              /per night
+            </p>
+            <p
+              class="antialiased font-sans text-sm leading-normal text-gray-700 flex gap-1 font-semibold"
+            >
+              Milan, Italy
+            </p>
+          </div>
+        </div>
+      </div>
+      ,
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <h1
+        class="block antialiased text-inherit uppercase font-osans mt-3 font-extralight tracking-widest mb-3 text-center sl:ml-2 text-[1.37rem] leading-7 sm:text-2xl md:text-3xl border-b-2 pb-2"
+      >
+        AVAILABLE ROOMS
+      </h1>
+    </div>
+    <div
+      class="relative max-w-[800px] mx-auto flex flex-col mt-6"
+    >
+      <div
+        class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md cursor-pointer my-5"
+      >
+        <div
+          class="bg-clip-border rounded-xl overflow-hidden bg-amber-500 text-gray-700 shadow-amber-500/40 shadow-lg -mt-6 relative h-56 mx-0.5"
+        >
+          <img
+            alt="img-blur-shadow"
+            class="h-full w-full object-cover"
+            src="https://media.cnn.com/api/v1/images/stellar/prod/140127103345-peninsula-shanghai-deluxe-mock-up.jpg"
+          />
+        </div>
+        <div
+          class="p-6 px-2 text-center"
+        >
+          <h5
+            class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-inherit mb-2 whitespace-pre-wrap"
+          >
+            The Wallace Hotel
+          </h5>
+        </div>
+        <div
+          class="p-6 border-t border-blue-gray-50 flex items-center justify-between py-3"
+        >
+          <p
+            class="block antialiased font-sans text-sm leading-normal text-inherit font-semibold"
+          >
+            $
+            1050
+            /per night
+          </p>
+          <p
+            class="antialiased font-sans text-sm leading-normal text-gray-700 flex gap-1 font-semibold"
+          >
+            Manhatten, New York
+          </p>
+        </div>
+      </div>
+      <div
+        class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md cursor-pointer my-5"
+      >
+        <div
+          class="bg-clip-border rounded-xl overflow-hidden bg-amber-500 text-gray-700 shadow-amber-500/40 shadow-lg -mt-6 relative h-56 mx-0.5"
+        >
+          <img
+            alt="img-blur-shadow"
+            class="h-full w-full object-cover"
+            src="https://cdn.loewshotels.com/loewshotels.com-2466770763/cms/cache/v2/5f5a6e0d12749.jpg/1920x1080/fit/80/86e685af18659ee9ecca35c465603812.jpg"
+          />
+        </div>
+        <div
+          class="p-6 px-2 text-center"
+        >
+          <h5
+            class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-inherit mb-2 whitespace-pre-wrap"
+          >
+            NH Collection Milano President
+          </h5>
+        </div>
+        <div
+          class="p-6 border-t border-blue-gray-50 flex items-center justify-between py-3"
+        >
+          <p
+            class="block antialiased font-sans text-sm leading-normal text-inherit font-semibold"
+          >
+            $
+            1750
+            /per night
+          </p>
+          <p
+            class="antialiased font-sans text-sm leading-normal text-gray-700 flex gap-1 font-semibold"
+          >
+            Milan, Italy
+          </p>
+        </div>
+      </div>
+    </div>
+    ,
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

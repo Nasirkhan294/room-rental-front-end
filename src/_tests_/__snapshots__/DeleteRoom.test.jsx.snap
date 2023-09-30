@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCar component Should render the proper DeleteCar component 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="bg-clip-border mx-4 rounded-xl overflow-hidden shadow-lg -mt-6 sticky top-2 z-30 mb-16 grid h-28 place-items-center text-white bg-orange-600/90 backdrop-blur-md"
+      >
+        <h3
+          class="block antialiased text-3xl leading-snug text-white font-osans uppercase tracking-widest font-light"
+        >
+          Delete a Room
+        </h3>
+      </div>
+      <div
+        class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md max-w-sm mt-48 mx-auto h-32"
+      >
+        <div
+          class="p-6 text-center font-bold my-auto text-2xl"
+        >
+          No Rooms Available
+        </div>
+      </div>
+      ,
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="bg-clip-border mx-4 rounded-xl overflow-hidden shadow-lg -mt-6 sticky top-2 z-30 mb-16 grid h-28 place-items-center text-white bg-orange-600/90 backdrop-blur-md"
+    >
+      <h3
+        class="block antialiased text-3xl leading-snug text-white font-osans uppercase tracking-widest font-light"
+      >
+        Delete a Room
+      </h3>
+    </div>
+    <div
+      class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md max-w-sm mt-48 mx-auto h-32"
+    >
+      <div
+        class="p-6 text-center font-bold my-auto text-2xl"
+      >
+        No Rooms Available
+      </div>
+    </div>
+    ,
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`AddRoom component Should render the proper DeleteRoom component 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="bg-clip-border mx-4 rounded-xl overflow-hidden shadow-lg -mt-6 sticky top-2 z-30 mb-16 grid h-28 place-items-center text-white bg-orange-600/90 backdrop-blur-md"
+      >
+        <h3
+          class="block antialiased text-3xl leading-snug text-white font-osans uppercase tracking-widest font-light"
+        >
+          Delete a Room
+        </h3>
+      </div>
+      <div
+        class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md max-w-sm mt-48 mx-auto h-32"
+      >
+        <div
+          class="p-6 text-center font-bold my-auto text-2xl"
+        >
+          No Rooms Available
+        </div>
+      </div>
+      ,
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="bg-clip-border mx-4 rounded-xl overflow-hidden shadow-lg -mt-6 sticky top-2 z-30 mb-16 grid h-28 place-items-center text-white bg-orange-600/90 backdrop-blur-md"
+    >
+      <h3
+        class="block antialiased text-3xl leading-snug text-white font-osans uppercase tracking-widest font-light"
+      >
+        Delete a Room
+      </h3>
+    </div>
+    <div
+      class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md max-w-sm mt-48 mx-auto h-32"
+    >
+      <div
+        class="p-6 text-center font-bold my-auto text-2xl"
+      >
+        No Rooms Available
+      </div>
+    </div>
+    ,
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
