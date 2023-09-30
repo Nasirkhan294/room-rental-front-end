@@ -35,7 +35,7 @@ const AppRouter = () => {
       <div className="p-7 px-2 flex-1 h-screen overflow-y-scroll">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/room/:id" element={<RoomDetails />} />
+          <Route path="/room-details/:id" element={<RoomDetails />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/reservation" element={<Reservation />} />
