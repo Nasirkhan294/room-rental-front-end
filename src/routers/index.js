@@ -15,7 +15,7 @@ import BookingPage from '../pages/BookingPage';
 import Reservation from '../pages-home/Reservation';
 
 const AppRouter = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const isTokenSet = useToken();
 
   const handleOpen = (flag) => {
