@@ -88,7 +88,7 @@ const Reservation = () => {
             },
           }) => (
             <Card key={reservationId} className="max-w-sm">
-              <CardHeader color="amber" className="relative h-56">
+              <CardHeader color="orange" className="relative h-56">
                 <img
                   src={image}
                   alt={`${hotel}-img`}
