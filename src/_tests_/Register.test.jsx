@@ -7,17 +7,17 @@ import '@testing-library/jest-dom/';
 import Register from '../components/Register';
 
 describe('Register component', () => {
-    test('Should render the proper Register component', () => {
-      const register = render(
-        <React.StrictMode>
-          <Provider store={store}>
-            <Router>
-              <Register />
-            </Router>
-          </Provider>
-          ,
-        </React.StrictMode>,
-      );
-      expect(register).toMatchSnapshot();
-    });
+  test('Should render the proper Register component', () => {
+    const register = render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <Router>
+            <Register />
+          </Router>
+        </Provider>
+        ,
+      </React.StrictMode>,
+    );
+    expect(register).toMatchSnapshot();
   });
+});

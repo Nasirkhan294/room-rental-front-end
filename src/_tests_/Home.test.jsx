@@ -7,17 +7,17 @@ import '@testing-library/jest-dom/';
 import Home from '../pages-home/Home';
 
 describe('Home Page', () => {
-    test('Should render the proper Home Page', () => {
-      const homePage = render(
-        <React.StrictMode>
-          <Provider store={store}>
-            <Router>
-              <Home />
-            </Router>
-          </Provider>
-          ,
-        </React.StrictMode>,
-      );
-      expect(homePage).toMatchSnapshot();
-    });
+  test('Should render the proper Home Page', () => {
+    const homePage = render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <Router>
+            <Home />
+          </Router>
+        </Provider>
+        ,
+      </React.StrictMode>,
+    );
+    expect(homePage).toMatchSnapshot();
   });
+});

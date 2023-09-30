@@ -7,17 +7,17 @@ import '@testing-library/jest-dom/';
 import DeleteRoom from '../components/DeleteRoom';
 
 describe('AddRoom component', () => {
-    test('Should render the proper DeleteRoom component', () => {
-      const deleteRoom = render(
-        <React.StrictMode>
-          <Provider store={store}>
-            <Router>
-              <DeleteRoom />
-            </Router>
-          </Provider>
-          ,
-        </React.StrictMode>,
-      );
-      expect(deleteRoom).toMatchSnapshot();
-    });
+  test('Should render the proper DeleteRoom component', () => {
+    const deleteRoom = render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <Router>
+            <DeleteRoom />
+          </Router>
+        </Provider>
+        ,
+      </React.StrictMode>,
+    );
+    expect(deleteRoom).toMatchSnapshot();
   });
+});

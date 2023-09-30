@@ -7,17 +7,17 @@ import '@testing-library/jest-dom/';
 import AddRoom from '../components/AddRoom';
 
 describe('AddRoom component', () => {
-    test('Should render the proper AddRoom component', () => {
-      const addRoom = render(
-        <React.StrictMode>
-          <Provider store={store}>
-            <Router>
-              <AddRoom />
-            </Router>
-          </Provider>
-          ,
-        </React.StrictMode>,
-      );
-      expect(addRoom).toMatchSnapshot();
-    });
+  test('Should render the proper AddRoom component', () => {
+    const addRoom = render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <Router>
+            <AddRoom />
+          </Router>
+        </Provider>
+        ,
+      </React.StrictMode>,
+    );
+    expect(addRoom).toMatchSnapshot();
   });
+});

@@ -7,17 +7,17 @@ import '@testing-library/jest-dom/';
 import ReservationDetail from '../pages-home/DetailsReservation';
 
 describe('Reservation Detail component', () => {
-    test('Should render the proper Reservation Detail component', () => {
-      const reservationDetail = render(
-        <React.StrictMode>
-          <Provider store={store}>
-            <Router>
-              <ReservationDetail title checkinDate checkoutDate hotel />
-            </Router>
-          </Provider>
-          ,
-        </React.StrictMode>,
-      );
-      expect(reservationDetail).toMatchSnapshot();
-    });
+  test('Should render the proper Reservation Detail component', () => {
+    const reservationDetail = render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <Router>
+            <ReservationDetail title checkinDate checkoutDate hotel />
+          </Router>
+        </Provider>
+        ,
+      </React.StrictMode>,
+    );
+    expect(reservationDetail).toMatchSnapshot();
   });
+});
