@@ -28,7 +28,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
+    password_confirmation: '',
   };
 
   const SignupSchema = Yup.object().shape({
@@ -47,7 +47,7 @@ const Register = () => {
         /^[a-zA-Z0-9!@#$%^&* ]{6,20}$/,
         'Password must contain at least 6 characters!',
       ),
-    passwordConfirmation: Yup.string()
+    password_confirmation: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password not match')
       .required('Confirm Password is required!'),
   });
@@ -140,16 +140,16 @@ const Register = () => {
                 <Field
                   as={Input}
                   color="orange"
-                  name="passwordConfirmation"
+                  name="password_confirmation"
                   label="Confirm Password"
                   size="lg"
                   error={
-                    Boolean(errors.passwordConfirmation)
-                    && Boolean(touched.passwordConfirmation)
+                    Boolean(errors.password_confirmation)
+                    && Boolean(touched.password_confirmation)
                   }
                 />
                 <ErrorMessage
-                  name="passwordConfirmation"
+                  name="password_confirmation"
                   render={(msg) => (
                     <span className="text-xs text-gray-500">{msg}</span>
                   )}

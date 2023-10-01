@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api/v1';
+const BASE_URL = 'http://localhost:4000/api/v1';
 
 // set the authentication token in local storage
 const setAuthToken = (token) => localStorage.setItem('token', token);
@@ -53,10 +53,16 @@ const api = {
   // User registration
   register: async (user) => {
     const response = await fetch(
-      `${BASE_URL}/register`,
+      `${BASE_URL}/signup`,
       createRequestOptions('POST', user),
     );
-    return handleApiResponse(response);
+
+    const { status: code } = response;
+
+    if (code === 200) setAuthToken(response);
+
+    const data = await response.json();
+    return data;
   },
   //   User Login
   login: async (user) => {

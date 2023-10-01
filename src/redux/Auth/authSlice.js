@@ -10,7 +10,7 @@ const initialState = {
 
 export const registerUser = createAsyncThunk('auth/register', async (user) => {
   try {
-    return await api.register(user);
+    return await api.register({ user });
   } catch (error) {
     throw Error(error.message);
   }
@@ -61,7 +61,7 @@ const authSlice = createSlice({
       }))
       .addCase(registerUser.fulfilled, (state, action) => ({
         ...state,
-        authenticatedUser: action.payload.data,
+        // authenticatedUser: action.payload.data,
         message: action.payload.message,
         status: action.payload.status === 'succeeded' ? 'succeeded' : 'failed',
       }))
