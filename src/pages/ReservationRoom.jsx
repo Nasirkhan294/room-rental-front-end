@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types';
 import {
   Card,
   CardBody,
@@ -88,7 +87,7 @@ const Reservation = () => {
             },
           }) => (
             <Card key={reservationId} className="max-w-sm">
-              <CardHeader color="amber" className="relative h-56">
+              <CardHeader color="orange" className="relative h-56">
                 <img
                   src={image}
                   alt={`${hotel}-img`}
@@ -132,13 +131,5 @@ const Reservation = () => {
     </div>
   );
 };
-
-// Reservation.propTypes = {
-//   reservationTitle: PropTypes.string.isRequired,
-//   checkinDate: PropTypes.string.isRequired,
-//   checkoutDate: PropTypes.string.isRequired,
-//   hotel: PropTypes.string.isRequired,
-//   roomAvailable: PropTypes.bool.isRequired,
-// };
 
 export default Reservation;
