@@ -18,7 +18,7 @@ import {
   deleteReservation,
 } from '../redux/Reservations/reservationsSlice';
 import useToken from '../redux/Auth/useToken';
-import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
+import { authenticatedUser } from '../redux/Auth/authSlice';
 import Loader from '../components/Loader';
 import ReservationDetail from './DetailsReservation';
 
@@ -28,7 +28,7 @@ const Reservation = () => {
   const message = useSelector(selectReservationMessage);
   const reservations = useSelector(roomReservations);
   const status = useSelector(selectReservationStatus);
-  const currentUser = useSelector(selectAuthenticatedUser);
+  const currentUser = useSelector(authenticatedUser);
   const isTokenSet = useToken();
 
   const handleRemoveReservation = (reservationId) => {

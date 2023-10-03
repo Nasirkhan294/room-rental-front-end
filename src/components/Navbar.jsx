@@ -16,9 +16,9 @@ import {
 import { Tooltip } from '@material-tailwind/react';
 import useToken from '../redux/Auth/useToken';
 import {
-  logoutUser,
-  selectAuthStatus,
-  selectAuthenticatedUser,
+  signOut,
+  allStatus,
+  authenticatedUser,
 } from '../redux/Auth/authSlice';
 import {
   fetchReservations,
@@ -36,9 +36,9 @@ const Navbar = ({ open, handleOpen }) => {
   const [hide, setHide] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [authenticated, setAuthenticated] = useState(false);
-  const { id, name: userName, role } = useSelector(selectAuthenticatedUser);
+  const { id, name: userName, role } = useSelector(authenticatedUser);
   const dispatch = useDispatch();
-  const status = useSelector(selectAuthStatus);
+  const status = useSelector(allStatus);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { sideBarRef } = useRef(null);
@@ -101,7 +101,7 @@ const Navbar = ({ open, handleOpen }) => {
   };
 
   const handleSignOut = () => {
-    dispatch(logoutUser());
+    dispatch(signOut());
     dispatch(resetReservationState());
     dispatch(resetAllRoomsState());
     dispatch(resetRoomState());

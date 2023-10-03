@@ -9,7 +9,7 @@ import RoomDetails from '../pages/RoomDetails';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import ProtectedRoute from '../components/ProtectedRoute';
-import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
+import { getAuthenticatedUser } from '../redux/Auth/authSlice';
 import useToken from '../redux/Auth/useToken';
 import BookingPage from '../pages/BookingPage';
 import Reservation from '../pages-home/Reservation';
@@ -17,16 +17,17 @@ import Reservation from '../pages-home/Reservation';
 const AppRouter = () => {
   const [open, setOpen] = useState(true);
   const isTokenSet = useToken();
+  const dispatch = useDispatch();
+
+  if (isTokenSet) dispatch(getAuthenticatedUser);
 
   const handleOpen = (flag) => {
     if (flag === true || flag === false) setOpen(flag);
     else setOpen(!open);
   };
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    if (isTokenSet) dispatch(selectAuthenticatedUser);
+    if (isTokenSet) dispatch(getAuthenticatedUser);
   }, [isTokenSet]);
 
   return (

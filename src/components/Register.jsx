@@ -14,11 +14,7 @@ import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
 import * as Yup from 'yup';
-import {
-  registerUser,
-  selectAuthStatus,
-  selectAuthMessage,
-} from '../redux/Auth/authSlice';
+import { signUp, allMessages, allStatus } from '../redux/Auth/authSlice';
 import useToken from '../redux/Auth/useToken';
 import Alert from './Alert';
 import { Spinner } from './Loader';
@@ -51,15 +47,15 @@ const Register = () => {
       .oneOf([Yup.ref('password'), null], 'Password not match')
       .required('Confirm Password is required!'),
   });
-  const message = useSelector(selectAuthMessage);
-  const status = useSelector(selectAuthStatus);
+  const message = useSelector(allStatus);
+  const status = useSelector(allMessages);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const isTokenSet = useToken();
 
   const handleSignUp = (user) => {
-    dispatch(registerUser(user));
+    dispatch(signUp(user));
   };
 
   useEffect(() => {

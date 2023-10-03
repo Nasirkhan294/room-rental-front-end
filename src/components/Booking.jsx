@@ -21,14 +21,14 @@ import {
 } from '../redux/Reservations/reservationsSlice';
 import useToken from '../redux/Auth/useToken';
 import { fetchRooms, selectRoom } from '../redux/Room/roomSlice';
-import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
+import { authenticatedUser } from '../redux/Auth/authSlice';
 import Alert from './Alert';
 import { Spinner } from './Loader';
 
 const Booking = () => {
   const [checkinDate, setCheckinDate] = useState(null);
   const [checkoutDate, setCheckoutDate] = useState(null);
-  const currentUser = useSelector(selectAuthenticatedUser);
+  const currentUser = useSelector(authenticatedUser);
   const rooms = useSelector(fetchRooms);
   const message = useSelector(selectReservationMessage);
   const status = useSelector(selectReservationStatus);
