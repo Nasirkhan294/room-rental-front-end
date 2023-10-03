@@ -1,48 +1,56 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/api';
 
+// Actions
+const LOGIN = 'LOGIN';
+const LOGOUT = 'LOGOUT';
+const REGISTER = 'REGISTER';
+const GET_AUTH_USER = 'GET_AUTH_USER';
+
 const initialState = {
   authenticatedUser: {},
-  status: 'idle',
-  message: '',
+  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed' | 'unauthorized' | 'expired'
+  message: 'faild',
   error: null,
 };
 
-export const registerUser = createAsyncThunk('auth/register', async (user) => {
+// Thunks
+export const signUp = createAsyncThunk(REGISTER, async (user) => {
   try {
-    return await api.register({ user });
+    return await api.register(user);
   } catch (error) {
-    throw Error(error.message);
+    return error.message;
   }
 });
 
-export const loginUser = createAsyncThunk('auth/login', async (user) => {
+export const signIn = createAsyncThunk(LOGIN, async (user) => {
   try {
     return await api.login(user);
   } catch (error) {
-    throw Error(error.message);
+    return error.message;
   }
 });
 
-export const logoutUser = createAsyncThunk('auth/logout', async () => {
+export const signOut = createAsyncThunk(LOGOUT, async () => {
   try {
     return await api.logout();
   } catch (error) {
-    throw Error(error.message);
+    return error.message;
   }
 });
 
-export const fetchAuthUser = createAsyncThunk(
-  'auth/fetchAuthUser',
+export const getAuthenticatedUser = createAsyncThunk(
+  GET_AUTH_USER,
   async () => {
     try {
       return await api.fetchAuthUser();
     } catch (error) {
-      throw Error(error.message);
+      return error.message;
     }
   },
 );
 
+// Reducer
 const authSlice = createSlice({
   name: 'authenticatedUser',
   initialState,
@@ -55,62 +63,62 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => ({
+      .addCase(signUp.pending, (state) => ({
         ...state,
         status: 'loading',
       }))
-      .addCase(registerUser.fulfilled, (state, action) => ({
+      .addCase(signUp.fulfilled, (state, action) => ({
         ...state,
-        // authenticatedUser: action.payload.data,
+        authenticatedUser: action.payload.data,
         message: action.payload.message,
-        status: action.payload.status === 'succeeded' ? 'succeeded' : 'failed',
+        status: action.payload.status === 200 ? 'succeeded' : 'failed',
       }))
-      .addCase(registerUser.rejected, (state, action) => ({
+      .addCase(signUp.rejected, (state, action) => ({
         ...state,
         status: 'failed',
         error: action.error.message,
       }))
-      .addCase(loginUser.pending, (state) => ({
+      .addCase(signIn.pending, (state) => ({
         ...state,
         status: 'loading',
       }))
-      .addCase(loginUser.fulfilled, (state, action) => ({
+      .addCase(signIn.fulfilled, (state, action) => ({
         ...state,
-        authenticatedUser: action.payload.user,
-        message: action.payload.message,
-        status: action.payload.status,
+        authenticatedUser: action.payload.data,
+        message: 'Sign up Successfull',
+        status: 'Successfull',
       }))
-      .addCase(loginUser.rejected, (state, action) => ({
+      .addCase(signIn.rejected, (state, action) => ({
         ...state,
         status: 'failed',
         error: action.error.message,
       }))
-      .addCase(logoutUser.pending, (state) => ({
+      .addCase(signOut.pending, (state) => ({
         ...state,
         status: 'loading',
       }))
-      .addCase(logoutUser.fulfilled, (state, action) => ({
+      .addCase(signOut.fulfilled, (state, action) => ({
         ...state,
         authenticatedUser: {},
-        message: action.payload.message,
-        status: action.payload.status,
+        message: 'Sign out Successfull',
+        status: action.payload.data,
       }))
-      .addCase(logoutUser.rejected, (state, action) => ({
+      .addCase(signOut.rejected, (state, action) => ({
         ...state,
         status: 'failed',
         error: action.error.message,
       }))
-      .addCase(fetchAuthUser.pending, (state) => ({
+      .addCase(getAuthenticatedUser.pending, (state) => ({
         ...state,
         status: 'loading',
       }))
-      .addCase(fetchAuthUser.fulfilled, (state, action) => ({
+      .addCase(getAuthenticatedUser.fulfilled, (state, action) => ({
         ...state,
-        authenticatedUser: action.payload.user,
+        authenticatedUser: action.payload.currentUser,
         message: action.payload.message,
         status: action.payload.status,
       }))
-      .addCase(fetchAuthUser.rejected, (state, action) => ({
+      .addCase(getAuthenticatedUser.rejected, (state, action) => ({
         ...state,
         status: 'failed',
         error: action.error.message,
@@ -119,8 +127,8 @@ const authSlice = createSlice({
 });
 
 export const { setStatusIdle } = authSlice.actions;
-export const selectAuthenticatedUser = (state) => state.auth.authenticatedUser;
-export const selectAuthStatus = (state) => state.auth.status;
-export const selectAuthMessage = (state) => state.auth.message;
+export const authenticatedUser = (state) => state.auth.authenticatedUser;
+export const allStatus = (state) => state.auth.status;
+export const allMessages = (state) => state.auth.message;
 
 export default authSlice.reducer;
