@@ -38,7 +38,8 @@ const AppRouter = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/room/:id" element={<RoomDetails />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/booking" element={<BookingPage />} />
+            <Route path="/booking/:id" element={<BookingPage />} />
+            <Route path="/booking/" element={<BookingPage />} />
             <Route path="/reservation" element={<Reservation />} />
             <Route path="/add_room" element={<AddRoomPage />} />
             <Route path="/delete_room" element={<DeleteRoomPage />} />

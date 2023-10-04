@@ -148,9 +148,9 @@ const api = {
     const room = await response.json();
     return room;
   },
-  reserveRoom: async (id, booking) => {
-    const response = await fetch(`${baseURL}/users/${id}/reservations`, {
-      ...roomBookingOptions({ booking }),
+  reserveRoom: async (booking) => {
+    const response = await fetch(`${baseURL}/reservations`, {
+      ...roomBookingOptions(booking),
     });
 
     const data = await response.json();

@@ -11,9 +11,9 @@ const initialState = {
 
 export const reserveRoom = createAsyncThunk(
   'reservations/reserveRoom',
-  async ({ userId, booking }) => {
+  async (booking) => {
     try {
-      return await api.reserveRoom(userId, booking);
+      return await api.reserveRoom(booking);
     } catch (error) {
       return error.message;
     }
