@@ -62,7 +62,7 @@ const api = {
       return data;
     }
 
-    throw new Error('Registration failed'); // Throw an error if the registration was unsuccessful
+    throw new Error('Registration failed');
   },
   login: async (user) => {
     const response = await fetch(`${baseURL}/login`, {

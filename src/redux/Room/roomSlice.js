@@ -185,7 +185,7 @@ export const {
 export const availableRooms = (state) => state.rooms.availableRooms;
 export const selectRoomStatus = (state) => state.rooms.status;
 export const selectRoomMessage = (state) => state.rooms.message;
-export const selectRoom = (state) => state.rooms.room;
+export const selectRoom = (state) => state.rooms.availableRooms;
 export const allRooms = (state) => state.rooms.allRooms;
 
 export default roomsSlice.reducer;
