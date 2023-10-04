@@ -8,8 +8,8 @@ import Loader from '../components/Loader';
 const RoomDetails = ({ open }) => {
   const { id } = useParams();
   const rooms = useSelector(availableRooms);
-  const room = rooms.filter((room) => room.id === id);
-  console.log("room");
+  const room = rooms.filter((room) => room.id === Number(id))[0];
+  console.log(room);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const status = useSelector(selectRoomStatus);
@@ -18,11 +18,11 @@ const RoomDetails = ({ open }) => {
     navigate('/booking');
   };
 
-  document.title = `RooMic | ${room.name}`;
+  document.title = `RooMic | ${room.hosted_by}`;
 
   useEffect(() => {
     dispatch(fetchRooms(id));
-  }, []);
+  }, [id]);
   return status === 'loading' ? (
     <Loader />
   ) : (
@@ -33,7 +33,7 @@ const RoomDetails = ({ open }) => {
             {room.name}
           </h1>
           <img
-            className="w-[1000px] min-w-[270px] rounded-lg object-cover self-stretch"
+            className="w-[750px] min-w-[270px] rounded-lg object-cover self-stretch"
             src={room.img}
             alt={room.hosted_by}
           />
@@ -41,7 +41,7 @@ const RoomDetails = ({ open }) => {
         <div className="flex flex-col">
           <div className="mx-auto mt-2 text-2xl text-black font-bold self-end justify-self-start font-osans bg-amber-300 px-6 py-2 w-max rounded">
             $
-            {room.daily_price}
+            {room.price_per_day}
             <sub className="font-features subs font-normal">/per day</sub>
           </div>
           <p className="text-xs text-black font-light text-center">
@@ -52,14 +52,14 @@ const RoomDetails = ({ open }) => {
               SPECIFICATIONS
             </h2>
             <p className="">
-              <span className="font-semibold ">Make:</span>
+              <span className="font-semibold ">HostedBy:</span>
               {' '}
-              {room.name}
+              {room.hosted_by}
             </p>
             <p className="text-gray ">
-              <span className="font-semibold ">Model:</span>
+              <span className="font-semibold ">Location:</span>
               {' '}
-              {room.model}
+              {room.location}
             </p>
             <p
               className="text-gray text-base max-w-[420px]"
@@ -67,6 +67,27 @@ const RoomDetails = ({ open }) => {
               <span className="font-semibold">Description:</span>
               {' '}
               {room.description}
+            </p>
+            <p
+              className="text-gray text-base max-w-[420px]"
+            >
+              <span className="font-semibold">Comment:</span>
+              {' '}
+              {room.comment}
+            </p>
+            <p
+              className="text-gray text-base max-w-[420px]"
+            >
+              <span className="font-semibold">Available:</span>
+              {' '}
+              {room.available ? 'Yes' : 'Not Available'}
+            </p>
+            <p
+              className="text-gray text-base max-w-[420px]"
+            >
+              <span className="font-semibold">Capacity:</span>
+              {' '}
+              {room.capacity}
             </p>
           </div>
           <button
