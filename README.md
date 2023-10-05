@@ -27,6 +27,9 @@ The `Final capstone front end` project is a web application developed using the 
 ## Project Kanban board:
   [Kanban-board](https://github.com/users/Nasirkhan294/projects/12/views/1)
 
+## Project Live Demo:
+  [Live Demo](https://final-capstone-front-end-beta.vercel.app/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
