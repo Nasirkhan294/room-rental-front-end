@@ -64,6 +64,23 @@ npm tests
 - Twitter: [NasirMa35888225](https://twitter.com/NasirMa35888225)
 - LinkedIn: [nasirmahd](https://www.linkedin.com/in/nasirmahd/)
 
+👤 **Paul tes**
+
+- GitHub: [@AbelG101](https://github.com/Paul-tes)
+- LinkedIn: [Abel Gebeyehu](https://www.linkedin.com/in/paul-tesfaye)
+  
+👤 **Matee Safi**
+
+- GitHub: [@matee-safi](https://github.com/matee-safi)
+- Twitter: [@matee_safi](https://twitter.com/matee_safi)
+- LinkedIn: [@matee-safi](https://www.linkedin.com/in/matee-safi/)
+
+👤 **Shalini Nayan**
+
+- GitHub: [@ShaliniNayan](https://github.com/ShaliniNayan)
+- Twitter: [@sndprs](https://twitter.com/sndprs)
+- LinkedIn: [shalininayan](https://www.linkedin.com/in/shalininayan/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
