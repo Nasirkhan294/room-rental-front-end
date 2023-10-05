@@ -29,7 +29,7 @@ const RoomDetails = ({ open }) => {
     <div className="overflow-auto mt-10 mx-auto px-4 py-5 bg-gray-200 rounded">
       <div className={`md:flex ${open && 'tablet:flex-col'}`}>
         <div className="mr-4">
-          <h1 className="text-4xl text-black font-bold self-end justify-self-start font-osans pl-2 mb-12 border-l-4 border-amber-500">
+          <h1 className="text-4xl text-black font-bold self-end justify-self-start font-osans pl-2 mb-12 border-l-4 border-orange-500">
             {room.name}
           </h1>
           <img
@@ -39,7 +39,7 @@ const RoomDetails = ({ open }) => {
           />
         </div>
         <div className="flex flex-col">
-          <div className="mx-auto mt-2 text-2xl text-black font-bold self-end justify-self-start font-osans bg-amber-300 px-6 py-2 w-max rounded">
+          <div className="mx-auto mt-2 text-2xl text-black font-bold self-end justify-self-start font-osans bg-orange-300 px-6 py-2 w-max rounded">
             $
             {room.price_per_day}
             <sub className="font-features subs font-normal">/per day</sub>
@@ -48,7 +48,7 @@ const RoomDetails = ({ open }) => {
             Included Taxes and Checkup
           </p>
           <div className="text-black bg-white border border-gray-200 p-3 my-2 drop-shadow">
-            <h2 className="text-xl border-l-2 border-amber-500 font-bold p-1 mb-4 bg-amber-50">
+            <h2 className="text-xl border-l-2 border-orange-500 font-bold p-1 mb-4 bg-orange-50">
               SPECIFICATIONS
             </h2>
             <p className="">
@@ -96,7 +96,7 @@ const RoomDetails = ({ open }) => {
             onClick={handleReserve}
             type="button"
           >
-            <span className="text-black font-bold bg-amber-500 border px-4  hover:bg-amber-600 py-3 rounded-sm my-2">
+            <span className="text-black font-bold bg-orange-500 border px-4  hover:bg-orange-600 py-3 rounded-sm my-2">
               Reserve
             </span>
           </button>
