@@ -41,7 +41,7 @@ const Navbar = ({ open, handleOpen }) => {
   const status = useSelector(allStatus);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const sideBarRef = useRef(null);
+  const { sideBarRef } = useRef(null);
   const isTokenSet = useToken();
 
   const menu = [
@@ -77,6 +77,16 @@ const Navbar = ({ open, handleOpen }) => {
     },
   ];
 
+  const hideSidebar = () => {
+    if (width < 768) {
+      handleOpen(false);
+      setHide(true);
+    } else {
+      handleOpen(true);
+      setHide(false);
+    }
+  };
+
   const handleClickOutside = (e) => {
     if (width < 768 && !sideBarRef.current.contains(e.target)) setHide(true);
   };
@@ -101,9 +111,9 @@ const Navbar = ({ open, handleOpen }) => {
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    setWidth(window.innerWidth);
+    hideSidebar();
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [width]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -112,13 +122,13 @@ const Navbar = ({ open, handleOpen }) => {
 
   useEffect(() => {
     handleAuth();
-  }, [isTokenSet, role, id]);
+  }, [isTokenSet, role, id, handleAuth]);
 
   useEffect(() => {
     if (isTokenSet && pathname !== '/booking') {
       dispatch(resetRoomState());
     }
-  }, [pathname, isTokenSet]);
+  }, [pathname, isTokenSet, dispatch]);
 
   return (
     <div
@@ -131,21 +141,23 @@ const Navbar = ({ open, handleOpen }) => {
     >
       <button
         type="button"
-        onClick={() => handleOpen(!open)}
+        onClick={() => handleOpen()}
         className={`absolute flex justify-center items-center text-white bg-orange-700 p-0 hover:border-black top-9 w-6 h-6 border rounded-full cursor-pointer -right-3 ${
           !open && 'rotate-180'
-        }`}
+        } ${width < 768 && 'hidden'}`}
       >
         <ChevronLeftIcon className="w-5 stoke-white" />
       </button>
-      {open ? (
-        <div className="flex gap-x-4 items-center">
-          <BuildingOffice2Icon className="cursor-pointer w-20 text-white p-3 hover:bg-orange-600/90 hover:text-black hover:rounded-md" />
-          <h1 className="text-white text-xl duration-200">Room Rental</h1>
-        </div>
-      ) : (
-        <BuildingOffice2Icon className="cursor-pointer w-20 text-white p-3 hover:bg-orange-600/90 hover:text-black hover:rounded-md" />
-      )}
+      <div className="flex gap-x-4 items-center">
+        <BuildingOffice2Icon
+          className={`cursor-pointer w-20 text-white p-3 my-2 hover:bg-orange-600/90 hover:text-black hover:rounded-md ${
+            open && 'rotate-[360deg]'
+          }`}
+        />
+        <h1 className={`text-white text-xl duration-200 ${!open && 'scale-0'}`}>
+          Room Rental
+        </h1>
+      </div>
       <ul
         className={`pt-6 flex flex-col justify-center ${
           hide && 'hidden duration-300'
@@ -180,7 +192,7 @@ const Navbar = ({ open, handleOpen }) => {
         )}
         {menu.map(({
           id, name, icon, path,
-        }) => (role === undefined && id === 6 ? null : (
+        }) => (role === undefined && (id === 6) ? null : (
           <Tooltip
             key={id}
             content={name}

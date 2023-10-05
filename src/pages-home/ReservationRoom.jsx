@@ -26,6 +26,7 @@ const Reservation = () => {
   };
 
   const isTokenSet = useToken();
+
   const checkAuthUser = () => {
     if (!isTokenSet) navigate('/login');
   };
@@ -38,7 +39,6 @@ const Reservation = () => {
   document.title = `Reservations: ${reservations.length}`;
   return (
     <div className="max-w-sm mt-3 mb-5 mx-auto flex flex-col gap-y-12 h-[95%]">
-
       {reservations.length === 0 ? (
         <Card className="max-w-sm my-auto h-32">
           <CardBody className="text-center font-bold my-auto text-2xl">

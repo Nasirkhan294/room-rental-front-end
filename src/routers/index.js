@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Navbar from '../components/Navbar';
-import Home from '../pages/Home';
+import HomePage from '../pages-home/Home';
 import AddRoomPage from '../pages/AddRoomPage';
 import DeleteRoomPage from '../pages/DeleteRoomPage';
 import RoomDetails from '../pages/RoomDetails';
@@ -12,10 +12,10 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import { getAuthenticatedUser } from '../redux/Auth/authSlice';
 import useToken from '../redux/Auth/useToken';
 import BookingPage from '../pages/BookingPage';
-import Reservation from '../pages/Reservation';
+import Reservation from '../pages-home/Reservation';
 
 const AppRouter = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const isTokenSet = useToken();
   const dispatch = useDispatch();
 
@@ -35,9 +35,8 @@ const AppRouter = () => {
       <Navbar open={open} handleOpen={handleOpen} />
       <div className="p-7 px-2 flex-1 h-screen overflow-y-scroll">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/room/:id" element={<RoomDetails />} />
-
           <Route element={<ProtectedRoute />}>
             <Route path="/booking/:id" element={<BookingPage />} />
             <Route path="/booking/" element={<BookingPage />} />

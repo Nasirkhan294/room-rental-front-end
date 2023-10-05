@@ -9,7 +9,6 @@ import {
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
-
 import { availableRooms, selectRoomStatus } from '../redux/Room/roomSlice';
 
 const Home = () => {
