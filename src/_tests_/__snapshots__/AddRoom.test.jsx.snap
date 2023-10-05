@@ -1,0 +1,382 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddRoom component Should render the proper AddRoom component 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="relative flex flex-col bg-clip-border rounded-xl text-gray-700 shadow-md mt-8 mb-64 max-w-[450px] mx-auto bg-white/90 backdrop-blur-md"
+      >
+        <div
+          class="relative bg-clip-border mx-4 rounded-xl overflow-hidden shadow-lg -mt-6 mb-4 grid h-28 place-items-center bg-orange-600/90 text-white backdrop-blur-md"
+        >
+          <h3
+            class="block antialiased text-3xl leading-snug text-white font-osans uppercase tracking-widest font-light"
+          >
+            Add a room
+          </h3>
+        </div>
+        <div
+          class="p-6 text-center"
+        >
+          <h5
+            class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-inherit mb-2"
+          >
+            Kind Note
+          </h5>
+          <p
+            class="block antialiased font-sans text-base font-light leading-relaxed text-inherit text-center"
+          >
+            Kindly fill in the form below to add a room to the list of available rooms.
+          </p>
+        </div>
+        <form
+          action="#"
+        >
+          <div
+            class="p-6 flex flex-col gap-4"
+          >
+            <div>
+              <img
+                alt="room-preview"
+                src="https://www.fluttercampus.com/img/4by3.webp"
+              />
+            </div>
+            <div
+              class="relative w-full min-w-[200px] h-10"
+            >
+              <input
+                class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-orange-500"
+                name="name"
+                placeholder=" "
+                value=""
+              />
+              <label
+                class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+              >
+                Name
+                 
+              </label>
+            </div>
+            <div
+              class="relative w-full min-w-[200px] h-10"
+            >
+              <input
+                class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-orange-500"
+                name="image"
+                placeholder=" "
+                value="https://www.fluttercampus.com/img/4by3.webp"
+              />
+              <label
+                class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+              >
+                Put a Room Image link
+                 
+              </label>
+            </div>
+            <div
+              class="relative w-full min-w-[200px] h-11"
+            >
+              <input
+                class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md border-blue-gray-200 focus:border-orange-500"
+                name="price"
+                placeholder=" "
+                type="number"
+                value=""
+              />
+              <label
+                class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+              >
+                Price
+                 
+              </label>
+            </div>
+            <div
+              class="relative w-full min-w-[200px]"
+            >
+              <textarea
+                class="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-orange-500 !resize-none"
+                name="description"
+                placeholder=" "
+              />
+              <label
+                class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+              >
+                Description
+              </label>
+            </div>
+            <div
+              class="inline-flex items-center"
+            >
+              <label
+                class="relative flex items-center cursor-pointer p-3 rounded-full"
+                for=":r1:"
+              >
+                <input
+                  checked=""
+                  class="peer relative appearance-none w-5 h-5 border rounded-md border-blue-gray-200 cursor-pointer transition-all before:content[''] before:block before:bg-blue-gray-500 before:w-12 before:h-12 before:rounded-full before:absolute before:top-2/4 before:left-2/4 before:-translate-y-2/4 before:-translate-x-2/4 before:opacity-0 hover:before:opacity-10 before:transition-opacity checked:bg-orange-500 checked:border-orange-500 checked:before:bg-orange-500"
+                  id=":r1:"
+                  name="available"
+                  type="checkbox"
+                  value="true"
+                />
+                <span
+                  class="text-white absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity"
+                >
+                  <svg
+                    class="h-3.5 w-3.5"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </label>
+              <label
+                class="text-gray-700 font-light select-none cursor-pointer mt-px"
+                for=":r1:"
+              >
+                Available
+              </label>
+            </div>
+          </div>
+          <div
+            class="p-6 pt-0"
+          >
+            <button
+              class="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/40 active:opacity-[0.85] w-full capitalize flex justify-center items-center"
+              disabled=""
+              type="submit"
+            >
+              <span>
+                Add Room
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+      ,
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="relative flex flex-col bg-clip-border rounded-xl text-gray-700 shadow-md mt-8 mb-64 max-w-[450px] mx-auto bg-white/90 backdrop-blur-md"
+    >
+      <div
+        class="relative bg-clip-border mx-4 rounded-xl overflow-hidden shadow-lg -mt-6 mb-4 grid h-28 place-items-center bg-orange-600/90 text-white backdrop-blur-md"
+      >
+        <h3
+          class="block antialiased text-3xl leading-snug text-white font-osans uppercase tracking-widest font-light"
+        >
+          Add a room
+        </h3>
+      </div>
+      <div
+        class="p-6 text-center"
+      >
+        <h5
+          class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-inherit mb-2"
+        >
+          Kind Note
+        </h5>
+        <p
+          class="block antialiased font-sans text-base font-light leading-relaxed text-inherit text-center"
+        >
+          Kindly fill in the form below to add a room to the list of available rooms.
+        </p>
+      </div>
+      <form
+        action="#"
+      >
+        <div
+          class="p-6 flex flex-col gap-4"
+        >
+          <div>
+            <img
+              alt="room-preview"
+              src="https://www.fluttercampus.com/img/4by3.webp"
+            />
+          </div>
+          <div
+            class="relative w-full min-w-[200px] h-10"
+          >
+            <input
+              class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-orange-500"
+              name="name"
+              placeholder=" "
+              value=""
+            />
+            <label
+              class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+            >
+              Name
+               
+            </label>
+          </div>
+          <div
+            class="relative w-full min-w-[200px] h-10"
+          >
+            <input
+              class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-orange-500"
+              name="image"
+              placeholder=" "
+              value="https://www.fluttercampus.com/img/4by3.webp"
+            />
+            <label
+              class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+            >
+              Put a Room Image link
+               
+            </label>
+          </div>
+          <div
+            class="relative w-full min-w-[200px] h-11"
+          >
+            <input
+              class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-3 rounded-md border-blue-gray-200 focus:border-orange-500"
+              name="price"
+              placeholder=" "
+              type="number"
+              value=""
+            />
+            <label
+              class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[4.1] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+            >
+              Price
+               
+            </label>
+          </div>
+          <div
+            class="relative w-full min-w-[200px]"
+          >
+            <textarea
+              class="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-orange-500 !resize-none"
+              name="description"
+              placeholder=" "
+            />
+            <label
+              class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-orange-500 before:border-blue-gray-200 peer-focus:before:!border-orange-500 after:border-blue-gray-200 peer-focus:after:!border-orange-500"
+            >
+              Description
+            </label>
+          </div>
+          <div
+            class="inline-flex items-center"
+          >
+            <label
+              class="relative flex items-center cursor-pointer p-3 rounded-full"
+              for=":r1:"
+            >
+              <input
+                checked=""
+                class="peer relative appearance-none w-5 h-5 border rounded-md border-blue-gray-200 cursor-pointer transition-all before:content[''] before:block before:bg-blue-gray-500 before:w-12 before:h-12 before:rounded-full before:absolute before:top-2/4 before:left-2/4 before:-translate-y-2/4 before:-translate-x-2/4 before:opacity-0 hover:before:opacity-10 before:transition-opacity checked:bg-orange-500 checked:border-orange-500 checked:before:bg-orange-500"
+                id=":r1:"
+                name="available"
+                type="checkbox"
+                value="true"
+              />
+              <span
+                class="text-white absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity"
+              >
+                <svg
+                  class="h-3.5 w-3.5"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </label>
+            <label
+              class="text-gray-700 font-light select-none cursor-pointer mt-px"
+              for=":r1:"
+            >
+              Available
+            </label>
+          </div>
+        </div>
+        <div
+          class="p-6 pt-0"
+        >
+          <button
+            class="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/40 active:opacity-[0.85] w-full capitalize flex justify-center items-center"
+            disabled=""
+            type="submit"
+          >
+            <span>
+              Add Room
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+    ,
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

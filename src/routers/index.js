@@ -15,7 +15,7 @@ import BookingPage from '../pages/BookingPage';
 import Reservation from '../pages/Reservation';
 
 const AppRouter = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const isTokenSet = useToken();
   const dispatch = useDispatch();
 
@@ -37,6 +37,7 @@ const AppRouter = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/room/:id" element={<RoomDetails />} />
+
           <Route element={<ProtectedRoute />}>
             <Route path="/booking/:id" element={<BookingPage />} />
             <Route path="/booking/" element={<BookingPage />} />
