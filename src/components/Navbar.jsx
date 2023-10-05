@@ -31,6 +31,7 @@ import {
   fetchAllRooms,
 } from '../redux/Room/roomSlice';
 import { Dots } from './Loader';
+import MobileNavbar from './MobileNavbar';
 
 const Navbar = ({ open, handleOpen }) => {
   const [hide, setHide] = useState(false);
@@ -41,7 +42,7 @@ const Navbar = ({ open, handleOpen }) => {
   const status = useSelector(allStatus);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { sideBarRef } = useRef(null);
+  const sideBarRef = useRef(null);
   const isTokenSet = useToken();
 
   const menu = [
@@ -77,6 +78,11 @@ const Navbar = ({ open, handleOpen }) => {
     },
   ];
 
+  const handleHide = () => {
+    if (width < 768) setHide(!hide);
+    else setHide(false);
+  };
+
   const hideSidebar = () => {
     if (width < 768) {
       handleOpen(false);
@@ -95,7 +101,7 @@ const Navbar = ({ open, handleOpen }) => {
     if (isTokenSet) {
       setAuthenticated(true);
       dispatch(fetchRooms());
-      dispatch(fetchReservations());
+      dispatch(fetchReservations(id));
       if (role === 1) dispatch(fetchAllRooms());
     } else setAuthenticated(false);
   };
@@ -135,9 +141,9 @@ const Navbar = ({ open, handleOpen }) => {
       ref={sideBarRef}
       className={`${
         open ? 'w-72' : 'w-20'
-      } bg-black/90 h-screen relative self-stretch drop-shadow-xl duration-300 smax:absolute smax:bottom-0 smax:top-0 smax:z-40 ${
+      } bg-black/90 relative self-stretch drop-shadow-xl duration-300 smax:absolute smax:bottom-0 smax:top-0 smax:z-40 ${
         hide && 'h-max rounded-b-full transition-all duration-300'
-      }`}
+      } `}
     >
       <button
         type="button"
@@ -148,16 +154,14 @@ const Navbar = ({ open, handleOpen }) => {
       >
         <ChevronLeftIcon className="w-5 stoke-white" />
       </button>
-      <div className="flex gap-x-4 items-center">
-        <BuildingOffice2Icon
-          className={`cursor-pointer w-20 text-white p-3 my-2 hover:bg-orange-600/90 hover:text-black hover:rounded-md ${
-            open && 'rotate-[360deg]'
-          }`}
-        />
-        <h1 className={`text-white text-xl duration-200 ${!open && 'scale-0'}`}>
-          Room Rental
-        </h1>
-      </div>
+      {open ? (
+        <div className="flex gap-x-4 items-center">
+          <BuildingOffice2Icon className="cursor-pointer w-20 text-white p-3 hover:bg-orange-600/90 hover:text-black hover:rounded-md" />
+          <h1 className="text-white text-xl duration-200">Room Rental</h1>
+        </div>
+      ) : (
+        <MobileNavbar hideSidebar={handleHide} />
+      )}
       <ul
         className={`pt-6 flex flex-col justify-center ${
           hide && 'hidden duration-300'
@@ -192,7 +196,7 @@ const Navbar = ({ open, handleOpen }) => {
         )}
         {menu.map(({
           id, name, icon, path,
-        }) => (role === undefined && (id === 6) ? null : (
+        }) => (role === undefined && id === 6 ? null : (
           <Tooltip
             key={id}
             content={name}
