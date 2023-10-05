@@ -25,7 +25,6 @@ const DeleteRoom = () => {
   const navigate = useNavigate();
 
   const handleDeleteRoom = (roomId) => {
-    console.log(roomId);
     dispatch(deleteMyRoom(roomId));
   };
 

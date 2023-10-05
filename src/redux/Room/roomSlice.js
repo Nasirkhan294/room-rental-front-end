@@ -149,7 +149,6 @@ const roomsSlice = createSlice({
       }))
       .addCase(fetchMyRooms.fulfilled, (state, action) => {
         const myRooms = action.payload;
-        console.log(myRooms);
         state.myRooms = myRooms;
         state.status = 'fullfilled';
         // action
@@ -179,7 +178,6 @@ const roomsSlice = createSlice({
       }))
       .addCase(deleteMyRoom.fulfilled, (state, action) => {
         const deletedRoom = action.payload;
-        console.log(deletedRoom);
         state.myRooms = state.myRooms.filter((room) => room.id !== deletedRoom.id);
         state.message = 'Room Added';
         state.status = 'succeeded';

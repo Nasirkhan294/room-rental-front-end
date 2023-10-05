@@ -84,7 +84,6 @@ const AddRoom = () => {
       img: room.image,
     };
     dispatch(addRoom(roomdata));
-    console.log(roomdata);
     navigate('/');
   };
 

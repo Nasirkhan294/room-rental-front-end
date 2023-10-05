@@ -9,7 +9,6 @@ const RoomDetails = ({ open }) => {
   const { id } = useParams();
   const rooms = useSelector(availableRooms);
   const room = rooms.filter((room) => room.id === Number(id))[0];
-  // console.log(room);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const status = useSelector(selectRoomStatus);

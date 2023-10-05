@@ -229,7 +229,6 @@ const api = {
     return data;
   },
   deleteMyRoom: async (roomId) => {
-    console.log(`room id for api is ${roomId}`);
     const response = await fetch(`${baseURL}/rooms/${roomId}`, {
       ...deleteRoomOption(),
     });
