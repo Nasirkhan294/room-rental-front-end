@@ -9,30 +9,23 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
-import Switch from './Switch';
 import {
-  allRooms,
   selectRoomStatus,
-  toggleAvailability,
-  setMessageEmpty,
+  myRooms,
+  fetchMyRooms,
+  deleteMyRoom,
 } from '../redux/Room/roomSlice';
 import useToken from '../redux/Auth/useToken';
 
 const DeleteRoom = () => {
-  const rooms = useSelector(allRooms);
+  const dispatch = useDispatch();
+  const rooms = useSelector(myRooms);
   const status = useSelector(selectRoomStatus);
   const isTokenSet = useToken();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDeleteRoom = (status, roomId) => {
-    const room = {
-      available: status,
-    };
-
-    setTimeout(() => {
-      dispatch(toggleAvailability({ roomId, room }));
-    }, 1000);
+  const handleDeleteRoom = (roomId) => {
+    dispatch(deleteMyRoom(roomId));
   };
 
   document.title = 'Room Rental | Delete Room';
@@ -42,9 +35,9 @@ const DeleteRoom = () => {
   };
 
   useEffect(() => {
-    dispatch(setMessageEmpty());
+    dispatch(fetchMyRooms());
     checkAuthUser();
-  }, [isTokenSet]);
+  }, [isTokenSet, rooms.length]);
 
   return status === 'loading' ? (
     <Loader />
@@ -71,23 +64,23 @@ const DeleteRoom = () => {
       ) : (
         <div className="Room-Grid grid gap-6">
           {rooms.map(({
-            id: roomId, name, image, price, available,
+            id: roomId, hosted_by: hostedBy, img, price_per_day: price,
           }) => (
             <Card key={roomId} className="cursor-pointer my-5">
               <CardHeader
                 color="orange"
                 className="relative h-56 mx-0.5"
-                onClick={() => navigate(`/room-details/${roomId}`)}
+                onClick={() => navigate(`/room/${roomId}`)}
               >
                 <img
-                  src={image}
+                  src={img}
                   alt="img-blur-shadow"
                   className="h-full w-full object-cover"
                 />
               </CardHeader>
               <CardBody className="px-2 text-center">
                 <Typography variant="h5" className="mb-2 whitespace-pre-wrap">
-                  {name}
+                  {hostedBy}
                 </Typography>
               </CardBody>
               <CardFooter
@@ -98,12 +91,13 @@ const DeleteRoom = () => {
                   $
                   {price}
                 </Typography>
-                <Switch
-                  status={available}
-                  roomName={name}
-                  roomId={roomId}
-                  handleRemove={handleDeleteRoom}
-                />
+                <button
+                  type="button"
+                  onClick={() => handleDeleteRoom(roomId)}
+                  className="text-orange-500 hover:text-orange-700"
+                >
+                  Delete
+                </button>
               </CardFooter>
             </Card>
           ))}

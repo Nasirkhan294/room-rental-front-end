@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { DatePicker } from 'antd';
 import moment from 'moment';
-import dayjs from 'dayjs';
 import {
   Button,
   Card,
@@ -16,46 +15,49 @@ import {
 } from '@material-tailwind/react';
 import {
   reserveRoom,
-  selectReservationMessage,
-  selectReservationStatus,
+  // selectReservationMessage,
+  // selectReservationStatus,
 } from '../redux/Reservations/reservationsSlice';
 import useToken from '../redux/Auth/useToken';
-import { fetchRooms, selectRoom } from '../redux/Room/roomSlice';
-import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
+import { availableRooms } from '../redux/Room/roomSlice';
+// import { authenticatedUser } from '../redux/Auth/authSlice';
 import Alert from './Alert';
 import { Spinner } from './Loader';
 
 const Booking = () => {
   const [checkinDate, setCheckinDate] = useState(null);
   const [checkoutDate, setCheckoutDate] = useState(null);
-  const currentUser = useSelector(selectAuthenticatedUser);
-  const rooms = useSelector(fetchRooms);
-  const message = useSelector(selectReservationMessage);
-  const status = useSelector(selectReservationStatus);
-  const selectedRoom = useSelector(selectRoom).id;
-  const [roomId, setRoomId] = useState(0);
+  // const currentUser = useSelector(authenticatedUser);
+  // const { id } = useParams();
+  const rooms = useSelector(availableRooms);
+  // const selectedRoom = rooms.filter((room) => room.id === id)[0];
+  const message = 'useSelector(selectReservationMessage)';
+  const status = 'useSelector(selectReservationStatus)';
+  const { id: paramsId } = useParams();
+  const initialRoomId = paramsId || (rooms.length > 0 ? rooms[0].id : 0);
+  const [id, setRoomId] = useState(initialRoomId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isTokenSet = useToken();
-  const handleDateFormat = (date) => moment(
-    dayjs(date)
-      .toDate()
-      .format('YYYY-MM-DD'),
-  );
+  const handleDateFormat = (date) => {
+    const dateFormatted = new Date(date);
+    const options = {
+      weekday: 'short', day: 'numeric', month: 'short', year: 'numeric',
+    };
+    return dateFormatted.toLocaleDateString('en-US', options);
+  };
 
-  const handleRoomId = (roomId) => setRoomId(+roomId);
+  const handleRoomId = (roomId) => {
+    setRoomId(+roomId);
+  };
   const handleReserve = () => {
     const reservation = {
-      checkin_date: checkinDate,
-      checkout_date: checkoutDate,
-      room_id: roomId,
+      start_date: checkinDate,
+      end_date: checkoutDate,
+      room_id: id,
     };
-
-    const reservationObject = {
-      reservation,
-      userId: currentUser.id,
-    };
-    dispatch(reserveRoom(reservationObject));
+    dispatch(reserveRoom(reservation));
+    navigate('/reservation');
   };
 
   const navigateReservation = () => {
@@ -68,15 +70,15 @@ const Booking = () => {
     if (!isTokenSet) navigate('/login');
   };
 
-  const handleSeletedRoom = () => {
-    if (selectedRoom) setRoomId(selectedRoom);
-  };
+  // const handleSeletedRoom = () => {
+  //   if (id) setRoomId(selectedRoom.id);
+  // };
 
   useEffect(() => {
-    handleSeletedRoom();
+    // handleSeletedRoom();
     navigateReservation();
     checkAuthUser();
-  }, [message, isTokenSet, selectedRoom]);
+  }, [message, isTokenSet]);
 
   document.title = 'Room Rental | Booking';
   return (
@@ -126,7 +128,7 @@ const Booking = () => {
             color="orange"
             className=""
             name="room"
-            value={selectedRoom?.toString()}
+            value={id?.toString()}
             label="Select a room"
             onChange={handleRoomId}
             required
@@ -135,10 +137,13 @@ const Booking = () => {
               unmount: { y: 25 },
             }}
           >
-            {rooms.map(({ id: roomId, name }) => (
-              <Option value={roomId.toString()} key={roomId}>
-                {name}
-              </Option>
+            {rooms.map(({ id: roomId, hosted_by: hostedBy, available }) => (
+              (available ? (
+                <Option value={roomId.toString()} key={roomId}>
+                  {hostedBy}
+                </Option>
+              ) : '')
+
             ))}
           </Select>
         </CardBody>
@@ -158,5 +163,4 @@ const Booking = () => {
     </>
   );
 };
-
 export default Booking;

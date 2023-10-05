@@ -46,7 +46,7 @@ const ReservationDetail = ({
         <AccordionBody>
           <ul className="list-outside list-disc">
             <li className="flex gap-1 items-center">
-              <TagIcon className="w-7 stroke-orange-600" />
+              <TagIcon className="w-7 stroke-amber-600" />
               <span>{hotel}</span>
             </li>
             <li className="flex gap-1 items-center">

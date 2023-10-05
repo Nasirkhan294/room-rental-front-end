@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { toggleAvailability } from '../Room/roomSlice';
 import api from '../../api/api';
 
 const initialState = {
@@ -11,9 +10,9 @@ const initialState = {
 
 export const reserveRoom = createAsyncThunk(
   'reservations/reserveRoom',
-  async ({ userId, booking }) => {
+  async (booking) => {
     try {
-      return await api.reserveRoom(userId, booking);
+      return await api.reserveRoom(booking);
     } catch (error) {
       return error.message;
     }
@@ -22,9 +21,9 @@ export const reserveRoom = createAsyncThunk(
 
 export const fetchReservations = createAsyncThunk(
   'reservations/fetchReservations',
-  async (userId) => {
+  async () => {
     try {
-      return await api.fetchBookings(userId);
+      return await api.fetchReservations();
     } catch (error) {
       return error.message;
     }
@@ -33,9 +32,9 @@ export const fetchReservations = createAsyncThunk(
 
 export const deleteReservation = createAsyncThunk(
   'reservations/deleteReservation',
-  async ({ userId, bookingId }) => {
+  async ({ bookingId }) => {
     try {
-      return await api.deleteBooking(userId, bookingId);
+      return await api.deleteReservation(bookingId);
     } catch (error) {
       return error.message;
     }
@@ -84,7 +83,7 @@ const reservationsSlice = createSlice({
       .addCase(reserveRoom.rejected, (state, action) => ({
         ...state,
         status: 'failed',
-        error: action.error.message,
+        error: action.error.message ? action.error.message : 'Unable to reserve Room',
       }))
       .addCase(fetchReservations.pending, (state) => ({
         ...state,
@@ -93,7 +92,7 @@ const reservationsSlice = createSlice({
       .addCase(fetchReservations.fulfilled, (state, action) => ({
         ...state,
         reservations: action.payload,
-        message: action.payload.message,
+        message: 'Reservation fetched',
         status: 'succeeded',
       }))
       .addCase(fetchReservations.rejected, (state, action) => ({
@@ -101,47 +100,18 @@ const reservationsSlice = createSlice({
         status: 'failed',
         error: action.error.message,
       }))
-      .addCase(toggleAvailability.pending, (state) => ({
-        ...state,
-        status: 'loading',
-      }))
-      .addCase(toggleAvailability.fulfilled, (state, action) => ({
-        ...state,
-        reservations: [
-          ...state.reservations.map((reservation) => (reservation.room.id === action.payload.data.id
-            ? {
-              ...reservation,
-              room: {
-                ...reservation.room,
-                available: action.payload.data.available,
-              },
-            }
-            : reservation)),
-        ],
-        status: 'succeeded',
-        message: `${action.payload.data.name} is ${
-          action.payload.data.available ? 'available' : 'unavailable'
-        }`,
-      }))
-      .addCase(toggleAvailability.rejected, (state, action) => ({
-        ...state,
-        status: 'failed',
-        error: action.error.message,
-      }))
-      .addCase(deleteReservation.pending, (state) => ({
-        ...state,
-        status: 'loading',
-      }))
-      .addCase(deleteReservation.fulfilled, (state, action) => ({
-        ...state,
-        reservations: [
-          ...state.reservations.filter(
-            (reservation) => reservation.id !== action.payload.data.id,
-          ),
-        ],
-        message: action.payload.message,
-        status: 'succeeded',
-      }))
+      .addCase(deleteReservation.fulfilled, (state, action) => (
+        {
+          ...state,
+          reservations: [
+            ...state.reservations.filter(
+              (reservation) => reservation.id !== action.meta.arg.bookingId,
+            ),
+          ],
+          message: action.payload.message,
+          status: 'succeeded',
+        }
+      ))
       .addCase(deleteReservation.rejected, (state, action) => ({
         ...state,
         status: 'failed',
@@ -151,8 +121,8 @@ const reservationsSlice = createSlice({
 });
 
 export const { resetReservationState, setMessageEmpty, setStatusIdle } = reservationsSlice.actions;
-export const roomReservations = (state) => state.reservations.reservations;
-export const selectReservationStatus = (state) => state.reservations.status;
-export const selectReservationMessage = (state) => state.reservations.message;
+export const roomReservations = (state) => state.bookings.reservations;
+export const selectReservationStatus = (state) => state.bookings.status;
+export const selectReservationMessage = (state) => state.bookings.message;
 
 export default reservationsSlice.reducer;

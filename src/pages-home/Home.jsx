@@ -9,14 +9,11 @@ import {
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
-import rooms from '../api/placeholder.json';
-// import { fetchAllRooms, selectRoomStatus } from '../redux/Room/roomSlice';
-import { selectRoomStatus } from '../redux/Room/roomSlice';
+import { availableRooms, selectRoomStatus } from '../redux/Room/roomSlice';
 
 const Home = () => {
   document.title = 'Home';
-  // const rooms = useSelector(fetchAllRooms);
-
+  const rooms = useSelector(availableRooms);
   const status = useSelector(selectRoomStatus);
   const navigate = useNavigate();
 
@@ -33,23 +30,25 @@ const Home = () => {
         </Typography>
       </div>
       <div className="relative max-w-[800px] mx-auto flex flex-col mt-6">
-
         {rooms.map((room) => (
           <Card
             key={room.id}
             className="cursor-pointer my-5"
-            onClick={() => navigate(`/room-details/${room.id}`)}
+            onClick={() => navigate(`/room/${room.id}`)}
           >
             <CardHeader color="amber" className="relative h-56 mx-0.5">
               <img
-                src={room.image}
+                src={room.img}
                 alt="img-blur-shadow"
                 className="h-full w-full object-cover"
               />
             </CardHeader>
             <CardBody className="px-2 text-center">
+              <Typography variant="h6" className={room.available ? '' : 'p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400'}>
+                {room.available ? '' : 'NOT AVAILABLE 😞'}
+              </Typography>
               <Typography variant="h5" className="mb-2 whitespace-pre-wrap">
-                {room.name}
+                {room.hosted_by}
               </Typography>
             </CardBody>
             <CardFooter
@@ -58,7 +57,7 @@ const Home = () => {
             >
               <Typography variant="small" className="font-semibold">
                 $
-                {room.daily_price}
+                {room.price_per_day}
                 /per night
               </Typography>
               <Typography
@@ -71,7 +70,6 @@ const Home = () => {
             </CardFooter>
           </Card>
         ))}
-
       </div>
     </>
   );
