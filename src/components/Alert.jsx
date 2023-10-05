@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Alert as MaterialAlert } from '@material-tailwind/react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setStatusIdle as setReservationStatus } from '../redux/Reservations/reservationsSlice';
-import { setStatusIdle as setRoomStatus } from '../redux/Room/roomSlice';
 import { setStatusIdle as setAuthStatus } from '../redux/Auth/authSlice';
+import { setStatusIdle as setHomeStatus } from '../redux/Room/roomSlice';
 
 const Alert = ({ message }) => {
   const [show, setShow] = useState(true);
@@ -20,15 +20,15 @@ const Alert = ({ message }) => {
     if (pathname === '/login') dispatch(setAuthStatus());
   };
 
-  const setRoomStatusIdle = () => {
-    if (pathname === '/add_room') dispatch(setRoomStatus());
+  const setCarStatusIdle = () => {
+    if (pathname === '/add_car') dispatch(setHomeStatus());
   };
 
   setTimeout(() => {
     setShow(false);
     setReservationStatusIdle();
     setAuthStatusIdle();
-    setRoomStatusIdle();
+    setCarStatusIdle();
   }, 5000);
 
   const filterMessage = (msg) => {
@@ -53,7 +53,7 @@ const Alert = ({ message }) => {
           onClose: () => {
             setReservationStatusIdle();
             setAuthStatusIdle();
-            setRoomStatusIdle();
+            setCarStatusIdle();
             setShow(false);
           },
         }}

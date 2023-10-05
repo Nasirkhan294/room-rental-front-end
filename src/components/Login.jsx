@@ -10,19 +10,15 @@ import {
   Input,
   Button,
 } from '@material-tailwind/react';
-import {
-  loginUser,
-  selectAuthStatus,
-  selectAuthMessage,
-} from '../redux/Auth/authSlice';
+import { signIn, allStatus, allMessages } from '../redux/Auth/authSlice';
 import useToken from '../redux/Auth/useToken';
 import Alert from './Alert';
 import { Spinner } from './Loader';
 
 const Login = () => {
   const [user, setUser] = useState({});
-  const status = useSelector(selectAuthStatus);
-  const message = useSelector(selectAuthMessage);
+  const status = useSelector(allStatus);
+  const message = useSelector(allMessages);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +31,7 @@ const Login = () => {
     setUser({ ...user, [input]: value });
   };
 
-  const handleSignIn = () => dispatch(loginUser(user));
+  const handleSignIn = () => dispatch(signIn(user));
 
   useEffect(() => {
     if (isTokenSet) navigate('/');

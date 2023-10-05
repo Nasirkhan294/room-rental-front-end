@@ -2,25 +2,27 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { selectRoom, fetchRooms, selectRoomStatus } from '../redux/Room/roomSlice';
+import { fetchRooms, selectRoomStatus, availableRooms } from '../redux/Room/roomSlice';
 import Loader from '../components/Loader';
 
 const RoomDetails = ({ open }) => {
   const { id } = useParams();
-  const roomDetails = useSelector(selectRoom);
+  const rooms = useSelector(availableRooms);
+  const room = rooms.filter((room) => room.id === Number(id))[0];
+  // console.log(room);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const status = useSelector(selectRoomStatus);
 
   const handleReserve = () => {
-    navigate('/booking');
+    navigate(`/booking/${id}`);
   };
 
-  document.title = `ElDorado | ${roomDetails.name}`;
+  document.title = `RooMic | ${room.hosted_by}`;
 
   useEffect(() => {
     dispatch(fetchRooms(id));
-  }, []);
+  }, [id]);
   return status === 'loading' ? (
     <Loader />
   ) : (
@@ -28,18 +30,18 @@ const RoomDetails = ({ open }) => {
       <div className={`md:flex ${open && 'tablet:flex-col'}`}>
         <div className="mr-4">
           <h1 className="text-4xl text-black font-bold self-end justify-self-start font-osans pl-2 mb-12 border-l-4 border-orange-500">
-            {roomDetails.name}
+            {room.name}
           </h1>
           <img
-            className="w-[1000px] min-w-[270px] rounded-lg object-cover self-stretch"
-            src={roomDetails.image}
-            alt={roomDetails.name}
+            className="w-[750px] min-w-[270px] rounded-lg object-cover self-stretch"
+            src={room.img}
+            alt={room.hosted_by}
           />
         </div>
         <div className="flex flex-col">
           <div className="mx-auto mt-2 text-2xl text-black font-bold self-end justify-self-start font-osans bg-orange-300 px-6 py-2 w-max rounded">
             $
-            {roomDetails.daily_price}
+            {room.price_per_day}
             <sub className="font-features subs font-normal">/per day</sub>
           </div>
           <p className="text-xs text-black font-light text-center">
@@ -50,23 +52,45 @@ const RoomDetails = ({ open }) => {
               SPECIFICATIONS
             </h2>
             <p className="">
-              <span className="font-semibold ">Make:</span>
+              <span className="font-semibold ">HostedBy:</span>
               {' '}
-              {roomDetails.name}
+              {room.hosted_by}
             </p>
             <p className="text-gray ">
-              <span className="font-semibold ">Model:</span>
+              <span className="font-semibold ">Location:</span>
               {' '}
-              {roomDetails.model}
+              {room.location}
             </p>
             <p
               className="text-gray text-base max-w-[420px]"
             >
               <span className="font-semibold">Description:</span>
               {' '}
-              {roomDetails.description}
+              {room.description}
+            </p>
+            <p
+              className="text-gray text-base max-w-[420px]"
+            >
+              <span className="font-semibold">Comment:</span>
+              {' '}
+              {room.comment}
+            </p>
+            <p
+              className="text-gray text-base max-w-[420px]"
+            >
+              <span className="font-semibold">Available:</span>
+              {' '}
+              {room.available ? 'Yes' : 'Not Available'}
+            </p>
+            <p
+              className="text-gray text-base max-w-[420px]"
+            >
+              <span className="font-semibold">Capacity:</span>
+              {' '}
+              {room.capacity}
             </p>
           </div>
+          {room.available && (
           <button
             className="my-3 mx-auto self-center"
             onClick={handleReserve}
@@ -76,6 +100,7 @@ const RoomDetails = ({ open }) => {
               Reserve
             </span>
           </button>
+          )}
         </div>
       </div>
     </div>

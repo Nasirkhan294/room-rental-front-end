@@ -1,132 +1,91 @@
 import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Card,
   CardBody,
-  CardFooter,
-  CardHeader,
-  Typography,
 } from '@material-tailwind/react';
-import { TrashIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import {
-  setMessageEmpty,
-  selectReservationMessage,
-  selectReservationStatus,
-  roomReservations,
   deleteReservation,
+  fetchReservations,
+  roomReservations,
 } from '../redux/Reservations/reservationsSlice';
 import useToken from '../redux/Auth/useToken';
-import { selectAuthenticatedUser } from '../redux/Auth/authSlice';
-import Loader from '../components/Loader';
-import ReservationDetail from './DetailsReservation';
 
 const Reservation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const message = useSelector(selectReservationMessage);
   const reservations = useSelector(roomReservations);
-  const status = useSelector(selectReservationStatus);
-  const currentUser = useSelector(selectAuthenticatedUser);
-  const isTokenSet = useToken();
-
-  const handleRemoveReservation = (reservationId) => {
-    const removeOptions = {
-      userId: currentUser.id,
-      reservationId,
-    };
-
-    dispatch(deleteReservation(removeOptions));
+  const formatDateString = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+  const handleDelete = (reservationId) => {
+    dispatch(deleteReservation({ bookingId: reservationId }));
   };
 
+  const isTokenSet = useToken();
   const checkAuthUser = () => {
     if (!isTokenSet) navigate('/login');
   };
 
-  const handleReservationMessage = () => {
-    if (message === 'Room has been successfully booked') dispatch(setMessageEmpty(''));
-  };
-
   useEffect(() => {
     checkAuthUser();
-    handleReservationMessage();
-  }, [message, isTokenSet]);
+    dispatch(fetchReservations());
+  }, [reservations.length]);
 
   document.title = `Reservations: ${reservations.length}`;
-  return status === 'loading' ? (
-    <Loader />
-  ) : (
+  return (
     <div className="max-w-sm mt-3 mb-5 mx-auto flex flex-col gap-y-12 h-[95%]">
-      <div>
-        <Typography
-          variant="h1"
-          className="uppercase font-osans font-extralight tracking-widest mb-3 text-center text-[1.37rem] leading-7 sm:text-2xl md:text-3xl border-b-2 pb-2"
-        >
-          Reservations
-        </Typography>
-      </div>
+
       {reservations.length === 0 ? (
         <Card className="max-w-sm my-auto h-32">
           <CardBody className="text-center font-bold my-auto text-2xl">
             {' '}
-            No Reservations
+            No Reservations 🕸
             {' '}
           </CardBody>
         </Card>
       ) : (
-        reservations.map(
-          ({
-            id: reservationId,
-            checkin_date: checkinDate,
-            checkout_date: checkoutDate,
-            room: {
-              name: hotel,
-              image,
-              daily_price: dailyPrice,
-              available,
-            },
-          }) => (
-            <Card key={reservationId} className="max-w-sm">
-              <CardHeader color="orange" className="relative h-56">
-                <img
-                  src={image}
-                  alt={`${hotel}-img`}
-                  className="h-full w-full"
-                />
-              </CardHeader>
-              <CardBody className="text-center">
-                <ReservationDetail
-                  reservationTitle={hotel}
-                  checkinDate={checkinDate}
-                  checkoutDate={checkoutDate}
-                  hotel={hotel}
-                  roomAvailable={available}
-                />
-              </CardBody>
-              <CardFooter
-                divider
-                className="flex items-center justify-between py-3"
-              >
-                <Typography
-                  variant="small"
-                  className="text-blue-gray-500 font-bold"
-                >
-                  {`$${dailyPrice}/day`}
-                </Typography>
-                <Typography variant="small" color="gray" className="flex gap-1">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">Reservation ID</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">Checkin Date</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">Checkout Date</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">Room Info</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">{' '}</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {reservations.map(({
+              id: reservationId, start_date: startDate, end_date: endDate, room_id: roomId,
+            }, index) => (
+              <tr key={reservationId} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'}>
+                <td className="px-6 py-4 whitespace-nowrap">{reservationId}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{formatDateString(startDate)}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{formatDateString(endDate)}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <Link to={`/room/${roomId}`} className="text-blue-600 hover:underline">
+                    See Room
+                    {' '}
+                    {roomId}
+                  </Link>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
                   <button
-                    onClick={() => handleRemoveReservation(reservationId)}
+                    className="text-red-600 hover:underline"
+                    onClick={() => handleDelete(reservationId)}
                     type="button"
-                    className="flex gap-2 items-center border border-red-600 rounded p-1"
                   >
-                    <TrashIcon className="w-7 text-red-500" />
-                    <span className="capitalize">remove</span>
+                    Delete
                   </button>
-                </Typography>
-              </CardFooter>
-            </Card>
-          ),
-        )
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

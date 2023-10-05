@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import store from '../redux/store';
 import '@testing-library/jest-dom/';
-import ReservationDetail from '../pages-home/DetailsReservation';
+import ReservationDetail from '../pages/DetailsReservation';
 
 describe('Reservation Detail component', () => {
   test('Should render the proper Reservation Detail component', () => {

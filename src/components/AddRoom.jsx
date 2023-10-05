@@ -18,6 +18,7 @@ import {
 import * as Yup from 'yup';
 import {
   addRoom,
+  selectRoom,
   selectRoomMessage,
   selectRoomStatus,
 } from '../redux/Room/roomSlice';
@@ -29,33 +30,37 @@ const AddRoom = () => {
   const defaultImg = 'https://www.fluttercampus.com/img/4by3.webp';
   const message = useSelector(selectRoomMessage);
   const status = useSelector(selectRoomStatus);
+  const availableRooms = useSelector(selectRoom);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isTokenSet = useToken();
 
   const initialValues = {
-    name: '',
+    location: '',
     description: '',
     price: '',
-    model: '',
+    capacity: '',
     image: defaultImg,
     available: true,
   };
 
   const RoomSchema = Yup.object().shape({
-    name: Yup.string()
+    location: Yup.string()
       .min(4, 'Too Short!')
       .max(250, 'Too Long!')
       .matches(
         /^(?=.{4,250}$)[a-zA-Z0-9 ]+$/,
-        'Name should have at least 4 characters and contain only letters, numbers, and spaces!',
+        'Location should have at least 4 characters and contain only letters, numbers, and spaces!',
       )
-      .required('Name is required!'),
+      .required('Location is required!'),
     description: Yup.string()
       .required('Description is required!')
       .min(5, 'Too Short!')
       .max(500, 'Too Long!'),
     price: Yup.number()
+      .required('Price is required!')
+      .positive('Please enter only positive numbers!'),
+    capacity: Yup.number()
       .required('Price is required!')
       .positive('Please enter only positive numbers!'),
     image: Yup.string()
@@ -70,23 +75,26 @@ const AddRoom = () => {
   document.title = 'Room Rental | Add Room';
 
   const handleAddRoom = (room) => {
-    dispatch(addRoom(room));
+    const roomdata = {
+      location: room.location,
+      capacity: room.capacity,
+      price: room.price,
+      floor: 'N/A',
+      description: room.description,
+      img: room.image,
+    };
+    dispatch(addRoom(roomdata));
+    console.log(roomdata);
+    navigate('/');
   };
 
   const checkAuthUser = () => {
     if (!isTokenSet) navigate('/login');
   };
 
-  const navigateDeleteRoom = () => {
-    if (message === 'Room has been successfully added') {
-      navigate('/delete_room');
-    }
-  };
-
   useEffect(() => {
-    navigateDeleteRoom();
     checkAuthUser();
-  }, [message, isTokenSet]);
+  }, [message, isTokenSet, availableRooms]);
   return (
     <>
       {status === 'failed' && <Alert message={message} />}
@@ -127,14 +135,14 @@ const AddRoom = () => {
                 </div>
                 <Field
                   as={Input}
-                  name="name"
+                  name="location"
                   color="orange"
                   size="md"
-                  label="Name"
-                  error={Boolean(errors.name) && touched.name}
+                  label="Location"
+                  error={Boolean(errors.location) && touched.location}
                 />
                 <ErrorMessage
-                  name="name"
+                  name="location"
                   render={(msg) => (
                     <span className="text-xs text-gray-500">{msg}</span>
                   )}
@@ -164,6 +172,21 @@ const AddRoom = () => {
                 />
                 <ErrorMessage
                   name="price"
+                  render={(msg) => (
+                    <span className="text-xs text-gray-500">{msg}</span>
+                  )}
+                />
+                <Field
+                  as={Input}
+                  name="capacity"
+                  type="number"
+                  color="orange"
+                  size="lg"
+                  label="capacity"
+                  error={Boolean(errors.capacity) && touched.capacity}
+                />
+                <ErrorMessage
+                  name="capacity"
                   render={(msg) => (
                     <span className="text-xs text-gray-500">{msg}</span>
                   )}

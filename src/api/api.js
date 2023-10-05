@@ -1,151 +1,249 @@
-const BASE_URL = 'http://localhost:3000/api/v1';
+const baseURL = 'http://localhost:4000/api/v1';
 
-// set the authentication token in local storage
-const setAuthToken = (token) => localStorage.setItem('token', token);
-// remove the authentication token from local storage
+const setAuthToken = (token) => localStorage.setItem('token', `Bearer ${token}`);
+
 const unsetAuthToken = () => localStorage.removeItem('token');
 
-// create options for HTTP requests with JSON body
-const createRequestOptions = (method, body) => ({
-  method,
+const registerOptions = (user) => ({
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(user),
+});
+
+const loginOptions = (user) => ({
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(user),
+});
+
+const roomBookingOptions = (booking) => ({
+  method: 'POST',
   headers: {
     'Content-Type': 'application/json',
     Authorization: localStorage.getItem('token'),
   },
-  body: JSON.stringify(body),
+  body: JSON.stringify(booking),
 });
-//  handle API responses
-const handleApiResponse = async (response) => {
-  const { status } = response;
 
-  if (status === 200 || status === 201) {
-    const data = await response.json();
-    return { status: 'succeeded', data };
-  }
+const addRoomOptions = (room) => ({
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+  body: JSON.stringify(room),
+});
 
-  if (status === 401) {
-    unsetAuthToken();
-    return {
-      status: 'Unauthorized',
-      error: 'Unauthorized, You must Login or Register',
-      message: 'Login failed, Please check your credentials',
-    };
-  }
+const myRoomsOption = () => ({
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+});
 
-  if (status === 422) {
-    const data = await response.json();
-    return { status: 'Failed', data, message: data.message };
-  }
+const deleteRoomOption = () => ({
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+});
 
-  if (status === 500) {
-    unsetAuthToken();
-    return {
-      status: 'Expired',
-      error: 'Unauthorized, You must Login or Register',
-      message: 'Session for User has expired',
-    };
-  }
+const removeReservationOptions = () => ({
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+});
 
-  return null;
-};
+const logoutOptions = () => ({
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+});
 
 const api = {
-  // User registration
   register: async (user) => {
-    const response = await fetch(
-      `${BASE_URL}/register`,
-      createRequestOptions('POST', user),
-    );
-    return handleApiResponse(response);
+    const response = await fetch(`${baseURL}/signup`, registerOptions({ user }));
+
+    const { status: code } = response;
+
+    if (code === 200) {
+      const data = await response.json();
+      setAuthToken(data.status.token);
+      return data;
+    }
+
+    throw new Error('Registration failed');
   },
-  //   User Login
   login: async (user) => {
-    const response = await fetch(
-      `${BASE_URL}/login`,
-      createRequestOptions('POST', user),
-    );
-
-    const result = await handleApiResponse(response);
-
-    if (result && result.status === 'succeeded') {
-      setAuthToken(response.headers.get('Authorization'));
-      return { ...result, user: result.data };
-    }
-
-    return result;
-  },
-
-  //  User logout
-  logout: async () => {
-    const response = await fetch(
-      `${BASE_URL}/logout`,
-      createRequestOptions('DELETE'),
-    );
-
-    const result = await handleApiResponse(response);
-
-    if (result && result.status === 'succeeded') {
-      unsetAuthToken();
-    }
-
-    return result;
-  },
-
-  // Fetch authenticated user
-  fetchAuthUser: async () => {
-    const response = await fetch(
-      `${BASE_URL}/users`,
-      createRequestOptions('GET'),
-    );
-    return handleApiResponse(response);
-  },
-
-  // Fetch available rooms
-  fetchAvailableRooms: async () => {
-    const response = await fetch(`${BASE_URL}/rooms`);
-    return response.json();
-  },
-
-  // Fetch a room by ID
-  fetchRoom: async (id) => {
-    const response = await fetch(`${BASE_URL}/rooms/${id}`);
-    return response.json();
-  },
-
-  // Reserve a room
-  reserveRoom: async (id, booking) => {
-    const response = await fetch(
-      `${BASE_URL}/users/${id}/bookings`,
-      createRequestOptions('POST', booking),
-    );
-    return response.json();
-  },
-
-  //  Fetch user's bookings
-  fetchBookings: async (id) => {
-    const response = await fetch(
-      `${BASE_URL}/users/${id}/bookings`,
-      createRequestOptions('GET'),
-    );
-    return response.json();
-  },
-
-  //  Toggle room availability
-  toggleRoomAvailability: async (roomId, room) => {
-    const response = await fetch(`${BASE_URL}/rooms/${roomId}/availability`, {
-      ...createRequestOptions('PATCH', room),
+    const response = await fetch(`${baseURL}/login`, {
+      ...loginOptions({ user }),
     });
 
-    return handleApiResponse(response);
-  },
+    const { status: code } = response;
 
-  //  Delete a booking
-  deleteBooking: async (userId, bookingId) => {
+    if (code === 200) {
+      const data = await response.json();
+      // const { message } = data.status;
+      setAuthToken(data.status.token);
+      return data;
+    }
+    if (code === 401) {
+      return {
+        user: {},
+        status: 'unauthorized',
+        error: 'Unauthorized, You must Login or Register',
+        message: 'Login failed, Please check your email and password',
+      };
+    }
+
+    return null;
+  },
+  logout: async () => {
+    const response = await fetch(`${baseURL}/logout`, {
+      ...logoutOptions(),
+    });
+
+    const { status: code } = response;
+
+    if (code === 200) {
+      unsetAuthToken();
+      const data = await response.json();
+      return {
+        user: {},
+        status: 'succeeded',
+        message: data.message,
+      };
+    }
+    if (code === 500) {
+      unsetAuthToken();
+      return {
+        user: {},
+        status: 'expired',
+        error: 'Unauthorized, You must Login or Register',
+        message: 'Session for User has expired',
+      };
+    }
+    return null;
+  },
+  fetchAuthUser: async () => {
+    const response = await fetch(`${baseURL}/users`, {
+      method: 'GET',
+      headers: { Authorization: localStorage.getItem('token') },
+    });
+
+    const { status: code } = response;
+
+    if (code === 401) {
+      unsetAuthToken();
+      return {
+        user: {},
+        status: 'expired',
+        error: 'Unauthorized, You must Login or Register',
+        message: 'Session for User has expired',
+      };
+    }
+    if (code === 200) {
+      const currentUser = await response.json();
+      return currentUser;
+    }
+    return null;
+  },
+  fetchAvailableRooms: async () => {
+    const response = await fetch(`${baseURL}/rooms`);
+    const rooms = await response.json();
+    return rooms;
+  },
+  fetchRoom: async (id) => {
+    const response = await fetch(`${baseURL}/rooms/${id}`);
+    const room = await response.json();
+    return room;
+  },
+  reserveRoom: async (booking) => {
+    const response = await fetch(`${baseURL}/reservations`, {
+      ...roomBookingOptions(booking),
+    });
+
+    const data = await response.json();
+    return data;
+  },
+  fetchReservations: async () => {
+    const response = await fetch(`${baseURL}/reservations`, {
+      headers: { Authorization: localStorage.getItem('token') },
+    });
+    const reservations = await response.json();
+    return reservations;
+  },
+  deleteReservation: async (reservationId) => {
     const response = await fetch(
-      `${BASE_URL}/users/${userId}/bookings/${bookingId}`,
-      createRequestOptions('DELETE'),
+      `${baseURL}/reservations/${reservationId}`,
+      {
+        ...removeReservationOptions(),
+      },
     );
-    return response.json();
+    const data = await response.json();
+    return data;
+  },
+  fetchAllRooms: async () => {
+    const response = await fetch(`${baseURL}/all_rooms`, {
+      headers: { Authorization: localStorage.getItem('token') },
+    });
+    const rooms = await response.json();
+    return rooms;
+  },
+  addRoom: async (room) => {
+    const response = await fetch(`${baseURL}/rooms`, {
+      ...addRoomOptions({ room }),
+    });
+    const data = await response.json();
+    const { status: code } = response;
+    if (code === 422) {
+      return {
+        status: 'failed',
+        data: room,
+        message: data.message,
+      };
+    }
+
+    return data;
+  },
+  myRooms: async (room) => {
+    const response = await fetch(`${baseURL}/rooms/my_rooms`, {
+      ...myRoomsOption(),
+    });
+    const data = await response.json();
+    const { status: code } = response;
+    if (code === 422) {
+      return {
+        status: 'failed',
+        data: room,
+        message: data.message,
+      };
+    }
+
+    return data;
+  },
+  deleteMyRoom: async (roomId) => {
+    console.log(`room id for api is ${roomId}`);
+    const response = await fetch(`${baseURL}/rooms/${roomId}`, {
+      ...deleteRoomOption(),
+    });
+    const data = await response.json();
+    const { status: code } = response;
+    if (code === 422) {
+      return {
+        status: 'failed',
+        data: roomId,
+        message: data.message,
+      };
+    }
+
+    return data;
   },
 };
 
