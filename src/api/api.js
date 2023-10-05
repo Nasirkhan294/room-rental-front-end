@@ -2,7 +2,7 @@ const baseURL = 'http://localhost:4000/api/v1';
 
 const setAuthToken = (token) => localStorage.setItem('token', `Bearer ${token}`);
 
-const unsetAuthToken = () => localStorage.removeItem('token');
+export const unsetAuthToken = () => localStorage.removeItem('token');
 
 const registerOptions = (user) => ({
   method: 'POST',
