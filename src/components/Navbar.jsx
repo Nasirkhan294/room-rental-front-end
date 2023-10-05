@@ -95,7 +95,7 @@ const Navbar = ({ open, handleOpen }) => {
     if (isTokenSet) {
       setAuthenticated(true);
       dispatch(fetchRooms());
-      dispatch(fetchReservations(id));
+      dispatch(fetchReservations());
       if (role === 1) dispatch(fetchAllRooms());
     } else setAuthenticated(false);
   };

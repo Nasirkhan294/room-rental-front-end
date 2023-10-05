@@ -156,16 +156,17 @@ const api = {
     const data = await response.json();
     return data;
   },
-  fetchReservations: async (id) => {
-    const response = await fetch(`${baseURL}/users/${id}/reservations`, {
+  fetchReservations: async () => {
+    const response = await fetch(`${baseURL}/reservations`, {
       headers: { Authorization: localStorage.getItem('token') },
     });
     const reservations = await response.json();
     return reservations;
   },
-  deleteReservation: async (userId, reservationId) => {
+  deleteReservation: async (reservationId) => {
+    console.log(reservationId);
     const response = await fetch(
-      `${baseURL}/users/${userId}/reservations/${reservationId}`,
+      `${baseURL}/reservations/${reservationId}`,
       {
         ...removeReservationOptions(),
       },

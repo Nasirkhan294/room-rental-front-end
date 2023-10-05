@@ -90,6 +90,7 @@ const RoomDetails = ({ open }) => {
               {room.capacity}
             </p>
           </div>
+          {room.available && (
           <button
             className="my-3 mx-auto self-center"
             onClick={handleReserve}
@@ -99,6 +100,7 @@ const RoomDetails = ({ open }) => {
               Reserve
             </span>
           </button>
+          )}
         </div>
       </div>
     </div>

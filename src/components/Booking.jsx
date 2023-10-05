@@ -56,11 +56,8 @@ const Booking = () => {
       end_date: checkoutDate,
       room_id: id,
     };
-    console.log(reservation);
-    // const reservationObject = {
-    //   reservation,
-    // };
     dispatch(reserveRoom(reservation));
+    navigate('/reservation');
   };
 
   const navigateReservation = () => {
@@ -140,10 +137,13 @@ const Booking = () => {
               unmount: { y: 25 },
             }}
           >
-            {rooms.map(({ id: roomId, hosted_by: hostedBy }) => (
-              <Option value={roomId.toString()} key={roomId}>
-                {hostedBy}
-              </Option>
+            {rooms.map(({ id: roomId, hosted_by: hostedBy, available }) => (
+              (available ? (
+                <Option value={roomId.toString()} key={roomId}>
+                  {hostedBy}
+                </Option>
+              ) : '')
+
             ))}
           </Select>
         </CardBody>

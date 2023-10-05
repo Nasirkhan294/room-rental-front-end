@@ -30,7 +30,6 @@ const Home = () => {
         </Typography>
       </div>
       <div className="relative max-w-[800px] mx-auto flex flex-col mt-6">
-
         {rooms.map((room) => (
           <Card
             key={room.id}
@@ -45,6 +44,9 @@ const Home = () => {
               />
             </CardHeader>
             <CardBody className="px-2 text-center">
+              <Typography variant="h6" className={room.available ? '' : 'p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400'}>
+                {room.available ? '' : 'NOT AVAILABLE 😞'}
+              </Typography>
               <Typography variant="h5" className="mb-2 whitespace-pre-wrap">
                 {room.hosted_by}
               </Typography>
@@ -68,7 +70,6 @@ const Home = () => {
             </CardFooter>
           </Card>
         ))}
-
       </div>
     </>
   );
