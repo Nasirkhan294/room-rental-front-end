@@ -164,7 +164,6 @@ const api = {
     return reservations;
   },
   deleteReservation: async (reservationId) => {
-    console.log(reservationId);
     const response = await fetch(
       `${baseURL}/reservations/${reservationId}`,
       {

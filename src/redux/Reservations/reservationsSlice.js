@@ -84,7 +84,7 @@ const reservationsSlice = createSlice({
       .addCase(reserveRoom.rejected, (state, action) => ({
         ...state,
         status: 'failed',
-        error: action.error.message,
+        error: action.error.message ? action.error.message : 'Unable to reserve Room',
       }))
       .addCase(fetchReservations.pending, (state) => ({
         ...state,
@@ -93,7 +93,7 @@ const reservationsSlice = createSlice({
       .addCase(fetchReservations.fulfilled, (state, action) => ({
         ...state,
         reservations: action.payload,
-        message: 'Fulfilled',
+        message: 'Reservation fetched',
         status: 'succeeded',
       }))
       .addCase(fetchReservations.rejected, (state, action) => ({

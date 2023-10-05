@@ -33,7 +33,7 @@ export const fetchRoomById = createAsyncThunk(FETCH_ROOM, async (id) => {
 
 export const addRoom = createAsyncThunk(ADD_ROOM, async (room) => {
   try {
-    return await api.reserveRoom(room);
+    return await api.addRoom(room);
   } catch (error) {
     return error.message;
   }
@@ -119,17 +119,13 @@ const roomsSlice = createSlice({
         ...state,
         status: 'loading',
       }))
-      .addCase(addRoom.fulfilled, (state, action) => ({
-        ...state,
-        availableRooms: [
-          ...(action.payload.data.available && action.payload.status === 201
-            ? [action.payload.data]
-            : []),
-          ...state.availableRooms,
-        ],
-        message: action.payload.message,
-        status: action.payload.status === 200 ? 'succeeded' : 'failed',
-      }))
+      .addCase(addRoom.fulfilled, (state, action) => {
+        const room = action.payload;
+        console.log(room);
+        state.availableRooms.push(room);
+        state.message = 'Room Added';
+        state.status = 'succeeded';
+      })
       .addCase(addRoom.rejected, (state, action) => ({
         ...state,
         status: 'failed',
