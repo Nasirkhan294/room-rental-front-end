@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:4000/api/v1';
+const baseURL = 'https://roomic.onrender.com/api/v1';
 
 const setAuthToken = (token) => localStorage.setItem('token', `Bearer ${token}`);
 
