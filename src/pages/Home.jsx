@@ -70,7 +70,7 @@ const Home = () => {
               </Typography>
             </CardFooter>
           </Card>
-        ))
+        ))}
       </div>
     </>
   );

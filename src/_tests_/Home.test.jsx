@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import store from '../redux/store';
 import '@testing-library/jest-dom/';
-import Home from '../pages-home/Home';
+import Home from '../pages/Home';
 
 describe('Home Page', () => {
   test('Should render the proper Home Page', () => {
