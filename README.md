@@ -24,6 +24,9 @@ The `Final capstone front end` project is a web application developed using the 
 ## Backend Project:
   [Final-capstone-back-end](https://github.com/Nasirkhan294/final-capstone-back-end)
 
+## Project Kanban board:
+  [Kanban-board](https://github.com/users/Nasirkhan294/projects/12/views/1)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
