@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { toggleAvailability } from '../Room/roomSlice';
 import api from '../../api/api';
 
 const initialState = {
@@ -101,52 +100,18 @@ const reservationsSlice = createSlice({
         status: 'failed',
         error: action.error.message,
       }))
-      .addCase(toggleAvailability.pending, (state) => ({
-        ...state,
-        status: 'loading',
-      }))
-      .addCase(toggleAvailability.fulfilled, (state, action) => ({
-        ...state,
-        reservations: [
-          ...state.reservations.map((reservation) => (reservation.room.id === action.payload.data.id
-            ? {
-              ...reservation,
-              room: {
-                ...reservation.room,
-                available: action.payload.data.available,
-              },
-            }
-            : reservation)),
-        ],
-        status: 'succeeded',
-        message: `${action.payload.data.name} is ${
-          action.payload.data.available ? 'available' : 'unavailable'
-        }`,
-      }))
-      .addCase(toggleAvailability.rejected, (state, action) => ({
-        ...state,
-        status: 'failed',
-        error: action.error.message,
-      }))
-      .addCase(deleteReservation.pending, (state) => ({
-        ...state,
-        status: 'loading',
-      }))
-      .addCase(deleteReservation.fulfilled, (state, action) => {
-        console.log(action.meta.arg.bookingId);
-        return (
-          {
-            ...state,
-            reservations: [
-              ...state.reservations.filter(
-                (reservation) => reservation.id !== action.meta.arg.bookingId,
-              ),
-            ],
-            message: action.payload.message,
-            status: 'succeeded',
-          }
-        );
-      })
+      .addCase(deleteReservation.fulfilled, (state, action) => (
+        {
+          ...state,
+          reservations: [
+            ...state.reservations.filter(
+              (reservation) => reservation.id !== action.meta.arg.bookingId,
+            ),
+          ],
+          message: action.payload.message,
+          status: 'succeeded',
+        }
+      ))
       .addCase(deleteReservation.rejected, (state, action) => ({
         ...state,
         status: 'failed',

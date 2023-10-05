@@ -34,6 +34,22 @@ const addRoomOptions = (room) => ({
   body: JSON.stringify(room),
 });
 
+const myRoomsOption = () => ({
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+});
+
+const deleteRoomOption = () => ({
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+});
+
 const removeReservationOptions = () => ({
   method: 'DELETE',
   headers: {
@@ -190,6 +206,39 @@ const api = {
       return {
         status: 'failed',
         data: room,
+        message: data.message,
+      };
+    }
+
+    return data;
+  },
+  myRooms: async (room) => {
+    const response = await fetch(`${baseURL}/rooms/my_rooms`, {
+      ...myRoomsOption(),
+    });
+    const data = await response.json();
+    const { status: code } = response;
+    if (code === 422) {
+      return {
+        status: 'failed',
+        data: room,
+        message: data.message,
+      };
+    }
+
+    return data;
+  },
+  deleteMyRoom: async (roomId) => {
+    console.log(`room id for api is ${roomId}`);
+    const response = await fetch(`${baseURL}/rooms/${roomId}`, {
+      ...deleteRoomOption(),
+    });
+    const data = await response.json();
+    const { status: code } = response;
+    if (code === 422) {
+      return {
+        status: 'failed',
+        data: roomId,
         message: data.message,
       };
     }

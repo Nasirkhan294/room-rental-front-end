@@ -1,34 +1,20 @@
-/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 import {
   Card,
   CardBody,
-//   CardFooter,
-//   CardHeader,
-//   Typography,
 } from '@material-tailwind/react';
-// import { TrashIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteReservation,
   fetchReservations,
-  // setMessageEmpty,
-  // selectReservationMessage,
-  // selectReservationStatus,
   roomReservations,
-  // deleteReservation,
 } from '../redux/Reservations/reservationsSlice';
 import useToken from '../redux/Auth/useToken';
-// import { authenticatedUser } from '../redux/Auth/authSlice';
-// import Loader from '../components/Loader';
-// import ReservationDetail from './DetailsReservation';
 
 const Reservation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const message = useSelector(selectReservationMessage);
   const reservations = useSelector(roomReservations);
   const formatDateString = (dateString) => {
     const date = new Date(dateString);
@@ -39,31 +25,15 @@ const Reservation = () => {
     dispatch(deleteReservation({ bookingId: reservationId }));
   };
 
-  // const status = useSelector(selectReservationStatus);
-  // const currentUser = useSelector(authenticatedUser);
   const isTokenSet = useToken();
-
-  // const handleRemoveReservation = (reservationId) => {
-  //   const removeOptions = {
-  //     userId: currentUser.id,
-  //     reservationId,
-  //   };
-
-  //   dispatch(deleteReservation(removeOptions));
-  // };
 
   const checkAuthUser = () => {
     if (!isTokenSet) navigate('/login');
   };
 
-  // const handleReservationMessage = () => {
-  //   if (message === 'Room has been successfully booked') dispatch(setMessageEmpty(''));
-  // };
-
   useEffect(() => {
     checkAuthUser();
     dispatch(fetchReservations());
-    // handleReservationMessage();
   }, [reservations.length]);
 
   document.title = `Reservations: ${reservations.length}`;
@@ -120,13 +90,5 @@ const Reservation = () => {
     </div>
   );
 };
-
-// Reservation.propTypes = {
-//   reservationTitle: PropTypes.string.isRequired,
-//   checkinDate: PropTypes.string.isRequired,
-//   checkoutDate: PropTypes.string.isRequired,
-//   hotel: PropTypes.string.isRequired,
-//   roomAvailable: PropTypes.bool.isRequired,
-// };
 
 export default Reservation;

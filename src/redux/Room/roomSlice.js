@@ -5,12 +5,14 @@ const FETCH_ROOMS = 'FETCH_ROOMS';
 const FETCH_ROOM = 'FETCH_ROOM';
 const ADD_ROOM = 'ADD_ROOM';
 const GET_OWNER_ROOMS = 'GET_OWNER_ROOMS';
-const TOGGLE_ROOM_AVAILABILITY = 'TOGGLE_ROOM_AVAILABILITY';
+const MY_ROOMS = 'My_ROOMS';
+const DELETE_ROOM = 'DELETE_MY_ROOM';
 
 const initialState = {
   availableRooms: [],
   room: {},
   allRooms: [],
+  myRooms: [],
   status: 'idle',
   error: null,
 };
@@ -47,11 +49,22 @@ export const fetchAllRooms = createAsyncThunk(GET_OWNER_ROOMS, async () => {
   }
 });
 
-export const toggleAvailability = createAsyncThunk(
-  TOGGLE_ROOM_AVAILABILITY,
-  async ({ roomId, room }) => {
+export const fetchMyRooms = createAsyncThunk(
+  MY_ROOMS,
+  async () => {
     try {
-      return await api.toggleRoomAvailability(roomId, room);
+      return await api.myRooms();
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
+export const deleteMyRoom = createAsyncThunk(
+  DELETE_ROOM,
+  async (roomId) => {
+    try {
+      return await api.deleteMyRoom(roomId);
     } catch (error) {
       return error.message;
     }
@@ -121,7 +134,6 @@ const roomsSlice = createSlice({
       }))
       .addCase(addRoom.fulfilled, (state, action) => {
         const room = action.payload;
-        console.log(room);
         state.availableRooms.push(room);
         state.message = 'Room Added';
         state.status = 'succeeded';
@@ -131,26 +143,18 @@ const roomsSlice = createSlice({
         status: 'failed',
         error: action.error.message,
       }))
-      .addCase(toggleAvailability.pending, (state) => ({
+      .addCase(fetchMyRooms.pending, (state) => ({
         ...state,
         status: 'loading',
       }))
-      .addCase(toggleAvailability.fulfilled, (state, action) => ({
-        ...state,
-        availableRooms: [
-          ...(action.payload.data.available ? [action.payload.data] : []),
-          ...state.availableRooms.filter(
-            ({ id }) => id !== action.payload.data.id,
-          ),
-        ],
-        allRooms: [
-          action.payload.data,
-          ...state.allRooms.filter(({ id }) => id !== action.payload.data.id),
-        ],
-        message: action.payload.message,
-        status: 'succeeded',
-      }))
-      .addCase(toggleAvailability.rejected, (state, action) => ({
+      .addCase(fetchMyRooms.fulfilled, (state, action) => {
+        const myRooms = action.payload;
+        console.log(myRooms);
+        state.myRooms = myRooms;
+        state.status = 'fullfilled';
+        // action
+      })
+      .addCase(fetchMyRooms.rejected, (state, action) => ({
         ...state,
         status: 'failed',
         error: action.error.message,
@@ -165,6 +169,22 @@ const roomsSlice = createSlice({
         status: 'succeeded',
       }))
       .addCase(fetchAllRooms.rejected, (state, action) => ({
+        ...state,
+        status: 'failed',
+        error: action.error.message,
+      }))
+      .addCase(deleteMyRoom.pending, (state) => ({
+        ...state,
+        status: 'loading',
+      }))
+      .addCase(deleteMyRoom.fulfilled, (state, action) => {
+        const deletedRoom = action.payload;
+        console.log(deletedRoom);
+        state.myRooms = state.myRooms.filter((room) => room.id !== deletedRoom.id);
+        state.message = 'Room Added';
+        state.status = 'succeeded';
+      })
+      .addCase(deleteMyRoom.rejected, (state, action) => ({
         ...state,
         status: 'failed',
         error: action.error.message,
@@ -183,5 +203,6 @@ export const selectRoomStatus = (state) => state.rooms.status;
 export const selectRoomMessage = (state) => state.rooms.message;
 export const selectRoom = (state) => state.rooms.availableRooms;
 export const allRooms = (state) => state.rooms.allRooms;
+export const myRooms = (state) => state.rooms.myRooms;
 
 export default roomsSlice.reducer;
