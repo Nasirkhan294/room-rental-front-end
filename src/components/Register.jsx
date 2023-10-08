@@ -122,6 +122,7 @@ const Register = () => {
                 <Field
                   as={Input}
                   color="orange"
+                  type="password"
                   name="password"
                   label="Password"
                   size="lg"
@@ -136,6 +137,7 @@ const Register = () => {
                 <Field
                   as={Input}
                   color="orange"
+                  type="password"
                   name="password_confirmation"
                   label="Confirm Password"
                   size="lg"
