@@ -84,10 +84,10 @@ const Booking = () => {
   return (
     <>
       {status === 'failed' && <Alert message={message} />}
-      <Card className="mt-8 max-w-sm mx-atuo bg-white/90 backdrop-blur-md">
+      <Card className="mt-5 max-w-sm mx-auto bg-white/90 backdrop-blur-md relative top-6">
         <CardHeader
           variant="gradient"
-          className="mb-4 grid h-28 place-items-center text-white bg-orange/50 backdrop-blur-md"
+          className="bg-orange-500 mb-4 grid h-28 place-items-center"
         >
           <Typography
             variant="h3"
@@ -101,7 +101,7 @@ const Booking = () => {
           <Typography variant="h5" className="mb-2">
             Kind Note
           </Typography>
-          <Typography className="text-left">
+          <Typography className="text-center">
             Explore our luxurious rooms and book your stay today.
           </Typography>
         </CardBody>
